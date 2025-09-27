@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['BMW_E34_1992_3600', 'BMW_E34_1994_4200', 'BMW_E34_1995_2800', 'Vokswagen_Polo_2001-2005_4790', 'Volswagen_Polo_2001_2003_2800', 'Volswagen_Polo_2001_2003_3680', 'Volswagen_Polo_2002_2500', 'Volswagen_Polo_2005_4790']
+
+roboflow:
+  workspace: automobiles-6kng5
+  project: cardetection1-1sqkg
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/automobiles-6kng5/cardetection1-1sqkg/dataset/1
