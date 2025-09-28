@@ -2,7 +2,7 @@
 CarDetection1 - v1 Roboflow Instant 1 [Eval]
 ==============================
 
-This dataset was exported via roboflow.com on September 27, 2025 at 10:51 AM GMT
+This dataset was exported via roboflow.com on September 27, 2025 at 9:52 PM GMT
 
 Roboflow is an end-to-end computer vision platform that helps you
 * collaborate with your team on computer vision projects
@@ -17,8 +17,8 @@ visit https://github.com/roboflow/notebooks
 
 To find over 100k other datasets and pre-trained models, visit https://universe.roboflow.com
 
-The dataset includes 40 images.
-Cars are annotated in YOLOv8 format.
+The dataset includes 48 images.
+Cars-hS0e are annotated in YOLOv8 format.
 
 The following pre-processing was applied to each image:
 * Auto-orientation of pixel data (with EXIF-orientation stripping)

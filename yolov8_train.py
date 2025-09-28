@@ -6,8 +6,8 @@ model = YOLO('yolov8n.pt')
 # Запуск обучения
 model.train(
     data='./dataset/data.yaml',   # путь к файлу с описанием данных
-    epochs=50,          # количество эпох
+    epochs=70,          # количество эпох
     imgsz=640,          # размер изображений
-    batch=16,           # размер батча
+    batch=32,           # размер батча
     lr0=0.001            # learning rate
 )
