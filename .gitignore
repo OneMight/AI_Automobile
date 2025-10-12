@@ -1,3 +1,8 @@
+#Downloaded images for trening AI
+/downloaded_images/
+/dataset/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
