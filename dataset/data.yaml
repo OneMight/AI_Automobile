@@ -2,12 +2,12 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 6
-names: ['Volswagen_Golf_2012_2017', 'Volswagen_Jetta_2014_2018', 'Volswagen_Passat_2000_2005', 'Volswagen_Polo_2001_2005', 'Volswagen_Tiguan_2020_2024', 'Volswagen_Touran_2003_2006']
+nc: 4
+names: ['Volkswagen_Golf', 'Volkswagen_Polo', 'Volkswagen_Tiguan', 'Volkswagen_Touran']
 
 roboflow:
   workspace: automobiles-6kng5
-  project: cardetection1-tsnez
-  version: 3
+  project: ai_automobile_detection_mark-n7vwk
+  version: 1
   license: CC BY 4.0
-  url: https://universe.roboflow.com/automobiles-6kng5/cardetection1-tsnez/dataset/3
+  url: https://universe.roboflow.com/automobiles-6kng5/ai_automobile_detection_mark-n7vwk/dataset/1
