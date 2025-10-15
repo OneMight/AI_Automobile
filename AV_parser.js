@@ -11,7 +11,7 @@ for(let i = 0; i < CAR_YEAR_Ar.length; i++){
     const CAR_MODEL = "logan";
 
     const CATALOG_URL = `https://cars.av.by/${CAR_BRAND}/${CAR_MODEL}/${CAR_YEAR_Ar[i]}`;
-    const SAVE_ROOT = path.resolve(__dirname, `downloaded_images/${CAR_BRAND}-${CAR_MODEL}-${CAR_YEAR_Ar[i]}`);
+    const SAVE_ROOT = path.resolve(__dirname, `downloaded_images/${CAR_BRAND}/${CAR_MODEL}/${CAR_BRAND}_${CAR_MODEL}-${CAR_YEAR_Ar[i]}`);
     fs.mkdirSync(SAVE_ROOT, { recursive: true });
 
     console.log('Starting browser...');
