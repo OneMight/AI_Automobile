@@ -1,8 +1,8 @@
 
-AI_Automobile_detection_Mark - v1 2025-10-13 12:52am
+AI_Automobile_detection_Mark - v2 2025-10-15 7:07pm
 ==============================
 
-This dataset was exported via roboflow.com on October 12, 2025 at 9:55 PM GMT
+This dataset was exported via roboflow.com on October 15, 2025 at 4:14 PM GMT
 
 Roboflow is an end-to-end computer vision platform that helps you
 * collaborate with your team on computer vision projects
@@ -17,7 +17,7 @@ visit https://github.com/roboflow/notebooks
 
 To find over 100k other datasets and pre-trained models, visit https://universe.roboflow.com
 
-The dataset includes 9747 images.
+The dataset includes 12413 images.
 Cars-tw3x are annotated in YOLOv8 format.
 
 The following pre-processing was applied to each image:

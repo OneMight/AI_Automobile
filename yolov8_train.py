@@ -15,7 +15,7 @@ def main():
         workers=6,          # 2-4 × количество CPU ядер
         device=0,
         lr0=0.01,
-        cache='ram',        # Кэшировать в оперативную память
+        cache='disk', 
     )
 
 if __name__ == '__main__':

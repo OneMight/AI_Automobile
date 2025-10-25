@@ -8,6 +8,6 @@ names: ['Volkswagen_Golf', 'Volkswagen_Polo', 'Volkswagen_Tiguan', 'Volkswagen_T
 roboflow:
   workspace: automobiles-6kng5
   project: ai_automobile_detection_mark-n7vwk
-  version: 1
+  version: 2
   license: CC BY 4.0
-  url: https://universe.roboflow.com/automobiles-6kng5/ai_automobile_detection_mark-n7vwk/dataset/1
+  url: https://universe.roboflow.com/automobiles-6kng5/ai_automobile_detection_mark-n7vwk/dataset/2
