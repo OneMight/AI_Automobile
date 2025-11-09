@@ -3,7 +3,11 @@
 /downloaded_images/
 /runs/detect/predict*
 /cars_test
+/results_sorted
 
+#detect_car_AI
+/detect_car_AI/dataset
+/detect_car_AI/dataset
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
