@@ -1,7 +1,7 @@
 #Downloaded images for trening AI
 /dataset
 /downloaded_images/
-
+/runs/detect/predict*
 
 
 # Byte-compiled / optimized / DLL files
