@@ -8,6 +8,10 @@
 #detect_car_AI
 /detect_car_AI/dataset
 /detect_car_AI/dataset
+
+#testing files
+test.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

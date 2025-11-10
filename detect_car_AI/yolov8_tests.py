@@ -8,10 +8,10 @@ import math
 
 model = YOLO('./runs/detect/train2/weights/best.pt')
 
-test_folder = '../downloaded_images/renault/megane'
-number_of_class = 4
-car_model = 'Renault'
-name_of_car = f'{car_model}_Megane'
+test_folder = '../downloaded_images/Mitsubishi/Eclipse'
+number_of_class = 5
+car_model = 'Mitsubishi'
+name_of_car = f'{car_model}_Eclipse'
 output_folder = f'../results_sorted/{car_model}AutoDetect'
 os.makedirs(output_folder, exist_ok=True)
 
@@ -48,7 +48,7 @@ for idx, img_path in enumerate(images):
     else:
         split = 'test'
 
-    img_name = os.path.basename(img_path)
+    img_name = os.path.basename(img_path)+f'{name_of_car}'
     img = cv2.imread(img_path)
     height, width, _ = img.shape
 
