@@ -2,13 +2,13 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
-const CAR_YEAR_Ar = ['1g-1989-1992', '1g-restajling-1992-1994', '2g-restajling-1997-1999', '3g-1999-2005','4g-2005-2008']
+const CAR_YEAR_Ar = ['8r-2008-2012','8r-restajling-2012-2017', 'fy-2016-2021', 'fy-restajling-2020-']
 for(let i = 0; i < CAR_YEAR_Ar.length; i++){
 
 (async () => {
     const MAX_ADS_TO_PROCESS = 50;
-    const CAR_BRAND = "Mitsubishi";
-    const CAR_MODEL = "Eclipse";
+    const CAR_BRAND = "Audi";
+    const CAR_MODEL = "Q5";
 
     const CATALOG_URL = `https://cars.av.by/${CAR_BRAND}/${CAR_MODEL}/${CAR_YEAR_Ar[i]}`;
     const SAVE_ROOT = path.resolve(__dirname, `downloaded_images/${CAR_BRAND}/${CAR_MODEL}/${CAR_BRAND}_${CAR_MODEL}-${CAR_YEAR_Ar[i]}`);

@@ -6,19 +6,19 @@ import cv2
 import random
 import math
 
-model = YOLO('./runs/detect/train2/weights/best.pt')
+model = YOLO('./runs/detect/train4/weights/best.pt')
 
-test_folder = '../downloaded_images/Mitsubishi/Eclipse'
-number_of_class = 5
-car_model = 'Mitsubishi'
-name_of_car = f'{car_model}_Eclipse'
-output_folder = f'../results_sorted/{car_model}AutoDetect'
+test_folder = '../downloaded_images/Geely/Emgrand'
+number_of_class = 10
+car_model = 'Geely'
+name_of_car = f'{car_model}_Emgrand'
+output_folder = f'../results_sorted/{name_of_car}AutoDetect'
 os.makedirs(output_folder, exist_ok=True)
 
 nullable_folder = os.path.join(output_folder, 'nullable')
 os.makedirs(nullable_folder, exist_ok=True)
 
-# Папка для train/val/test
+
 dataset_folders = {}
 for split in ['train', 'val', 'test']:
     dataset_folders[split] = os.path.join(output_folder, split)
@@ -26,7 +26,7 @@ for split in ['train', 'val', 'test']:
     os.makedirs(os.path.join(dataset_folders[split], 'images'), exist_ok=True)
     os.makedirs(os.path.join(dataset_folders[split], 'labels'), exist_ok=True)
 
-# Получаем список всех изображений
+
 images = glob.glob(f'{test_folder}/**/*.jpg', recursive=True) + \
          glob.glob(f'{test_folder}/**/*.png', recursive=True)
 
@@ -35,7 +35,7 @@ random.shuffle(images)
 total = len(images)
 n_train = math.ceil(total * 0.7)
 n_val = math.ceil(total * 0.2)
-# Остаток пойдет в тест
+
 n_test = total - n_train - n_val
 
 split_indices = {'train': n_train, 'val': n_val, 'test': n_train + n_val}
@@ -48,7 +48,9 @@ for idx, img_path in enumerate(images):
     else:
         split = 'test'
 
-    img_name = os.path.basename(img_path)+f'{name_of_car}'
+    img_name = os.path.basename(img_path)
+    ext = os.path.splitext(img_name)[1]
+    img_name_car = f'{name_of_car}_{idx:04d}{ext}'
     img = cv2.imread(img_path)
     height, width, _ = img.shape
 
@@ -71,13 +73,13 @@ for idx, img_path in enumerate(images):
 
             label_lines.append(f"{number_of_class} {x_center:.6f} {y_center:.6f} {w:.6f} {h:.6f}")
 
-        img_save_path = os.path.join(dataset_folders[split], 'images', img_name)
+        img_save_path = os.path.join(dataset_folders[split], 'images', img_name_car)
         cv2.imwrite(img_save_path, img)
 
-        label_save_path = os.path.join(dataset_folders[split], 'labels', os.path.splitext(img_name)[0] + '.txt')
+        label_save_path = os.path.join(dataset_folders[split], 'labels', os.path.splitext(img_name_car)[0] + '.txt')
         with open(label_save_path, 'w') as f:
             f.write('\n'.join(label_lines))
     else:
         shutil.copy(img_path, os.path.join(nullable_folder, img_name))
 
-print("\n✅ Обработка, разметка и разбиение на train/val/test завершено!")
+print("\n Обработка, разметка и разбиение на train/val/test завершено!")
