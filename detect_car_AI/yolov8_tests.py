@@ -49,7 +49,7 @@ for idx, img_path in enumerate(images):
     ext = os.path.splitext(img_name)[1]
     img_name_car = f'{name_of_car}_{idx:04d}{ext}'
 
-    # Загружаем и уменьшаем изображение до 640x640
+
     img = cv2.imread(img_path)
     if img is None:
         continue
@@ -57,8 +57,7 @@ for idx, img_path in enumerate(images):
 
     height, width, _ = img.shape
 
-    results = model(img, conf=0.7, save=False, verbose=False)  # передаём уже уменьшенное изображение
-
+    results = model(img, conf=0.7, save=False, verbose=False)
     if len(results[0].boxes) > 0:
         label_lines = []
 

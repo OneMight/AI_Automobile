@@ -1,13 +1,13 @@
-#Downloaded images for trening AI
-/dataset
+#Downloaded images for training AI
 /downloaded_images/
 /runs/detect/predict*
 /cars_test
 /results_sorted
-
-#detect_car_AI
+/node_modules
+#datasets of ai
 /detect_car_AI/dataset
-/detect_car_AI/dataset
+/detec_year_ai/dataset
+/dataset
 
 #testing files
 test.py
