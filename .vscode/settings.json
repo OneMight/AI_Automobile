@@ -1,0 +1,31 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^@mui/[^/]+$"],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "debug.javascript.terminalOptions": {
+    "resolveSourceMapLocations": [
+      "${workspaceFolder}/**",
+      "!**/node_modules/**",
+      "**/node_modules/.vite-temp/**"
+    ]
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}
