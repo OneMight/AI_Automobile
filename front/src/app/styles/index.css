@@ -1,5 +1,10 @@
 @import "tailwindcss";
-
+body {
+  min-height: 100vh;
+}
+#root {
+  min-height: 100vh;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -45,15 +50,21 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --main: #06b6d4;
+  --secondary-bg-button: #0f172a;
+  --hover-button-bg: oklch(78.9% 0.154 211.53);
   --button-text: #000000;
   --secondary-text: #94a3b8;
-  --header-bg: #020617;
+  --main-app: #020617;
+  --button-stroke: #1e293b;
 }
 @theme {
   --color-main: var(--main);
   --color-button-text: var(--button-text);
   --color-secondary-text: var(--secondary-text);
-  --color-header-bg: var(--header-bg);
+  --color-main-app: var(--main-app);
+  --color-hover-button-bg: var(--hover-button-bg);
+  --color-button-stroke: var(--button-stroke);
+  --color-secondary-bg-button: var(--secondary-bg-button);
 }
 
 @theme inline {
