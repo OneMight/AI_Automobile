@@ -10,5 +10,16 @@
   "Header": {
     "entire": "Войти",
     "reviews": "Отзывы"
+  },
+  "Login": {
+    "title": "С возвращением",
+    "description": "Введите данные для доступа к NeuroScan",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "Введите электронную почту",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "submit": "Войти в аккаунт",
+    "smallPassword": "Пароль должен содержать больше 8 символов",
+    "invalidEmail": "Неверная почта"
   }
 }

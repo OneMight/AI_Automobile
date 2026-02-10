@@ -1,13 +1,15 @@
 import { Button } from "@/components";
 import { ExitIcon, Logo } from "@/shared/images";
 import { ROUTES } from "@/shared/routes/routesPath";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const path = useLocation();
+  const condition = !path.href.includes(ROUTES.LOGIN);
   const { t } = useTranslation("Header");
-  const handleDirect = (link: string) => {
+  const handleDirect = (link: string) => () => {
     navigate({ to: link });
   };
   return (
@@ -15,22 +17,24 @@ export const Header = () => {
       <Link to={ROUTES.HOME}>
         <Logo />
       </Link>
-      <div className="flex flex-row items-center gap-10">
-        <Link
-          to={ROUTES.LOGIN}
-          className="text-sm hover:text-slate-200 text-secondary-text"
-        >
-          {t("reviews")}
-        </Link>
+      {condition && (
+        <div className="flex flex-row items-center gap-10">
+          <Link
+            to={ROUTES.LOGIN}
+            className="text-sm hover:text-slate-200 text-secondary-text"
+          >
+            {t("reviews")}
+          </Link>
 
-        <Button
-          className="text-button-text"
-          onClick={() => handleDirect(ROUTES.LOGIN)}
-        >
-          <ExitIcon />
-          {t("entire")}
-        </Button>
-      </div>
+          <Button
+            className="text-button-text"
+            onClick={handleDirect(ROUTES.LOGIN)}
+          >
+            <ExitIcon />
+            {t("entire")}
+          </Button>
+        </div>
+      )}
     </header>
   );
 };

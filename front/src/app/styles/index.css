@@ -50,7 +50,7 @@ body {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --main: #06b6d4;
-  --secondary-bg-button: #0f172a;
+  --secondary-bg: #0f172a;
   --hover-button-bg: oklch(78.9% 0.154 211.53);
   --button-text: #000000;
   --secondary-text: #94a3b8;
@@ -64,7 +64,7 @@ body {
   --color-main-app: var(--main-app);
   --color-hover-button-bg: var(--hover-button-bg);
   --color-button-stroke: var(--button-stroke);
-  --color-secondary-bg-button: var(--secondary-bg-button);
+  --color-secondary-bg: var(--secondary-bg);
 }
 
 @theme inline {
