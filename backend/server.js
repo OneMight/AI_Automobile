@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { router } from "./routes/index.js";
 import { sequelize } from "./db.js";
 import swaggerJsDoc from "swagger-jsdoc";
@@ -18,6 +19,7 @@ app.use(
 );
 // console.log(JSON.stringify(swaggerDocs, null, 2));
 app.use(express.json());
+app.use(cookieParser(process.env.SECRET_KEY));
 app.use("/api", router);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const start = async () => {
