@@ -1,0 +1,13 @@
+import { Router } from "express";
+import { UserRouter } from "./UserRouter.js";
+import { DeterminedModelsRouter } from "./DeterminedModelsRouter.js";
+import { StatisticsRouter } from "./StatisticsRouter.js";
+import { ReviewsRouter } from "./ReviewsRouter.js";
+import { CarsRouter } from "./CarsRouter.js";
+const router = new Router();
+router.use("user", UserRouter);
+router.use("determinedModels", DeterminedModelsRouter);
+router.use("statistic", StatisticsRouter);
+router.use("reviews", ReviewsRouter);
+router.use("cars", CarsRouter);
+export { router };
