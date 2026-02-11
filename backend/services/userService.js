@@ -1,20 +1,21 @@
 import { UserDto } from "../dto/userDto.js";
+import { User } from "../models/models.js";
 import { TokenService } from "./tokenService.js";
+import bcrypt from "bcrypt";
 const tokenService = new TokenService();
 export class UserService {
   async login(email, password) {
-    const user = await Employee.findOne({
+    const user = await User.findOne({
       where: {
         email,
       },
     });
-
     if (!user) {
-      throw new Error({ message: "Name is incorrect" });
+      return { message: "email is incorrect" };
     }
     const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) {
-      throw new Error({ message: "Incorrect password" });
+      return { message: "Incorrect password" };
     }
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ user });

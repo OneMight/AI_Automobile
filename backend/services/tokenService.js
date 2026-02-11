@@ -4,7 +4,7 @@ import { Tokens } from "../models/models.js";
 export class TokenService {
   generateToken(payload) {
     const accesToken = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: "30m",
+      expiresIn: "2h",
     });
     const refreshToken = jwt.sign(payload, process.env.SECRET_REFRESH_KEY, {
       expiresIn: "2h",
@@ -17,14 +17,14 @@ export class TokenService {
   async saveToken(id, refreshToken) {
     const datatoken = await Tokens.findOne({
       where: {
-        idEmployee: id,
+        idUser: id,
       },
     });
     if (datatoken) {
       datatoken.refreshToken = refreshToken;
       return datatoken.save();
     }
-    const token = await Tokens.create({ idEmployee: id, refreshToken });
+    const token = await Tokens.create({ idUser: id, refreshToken });
     return token;
   }
   async removeToken(refreshToken) {
@@ -36,7 +36,7 @@ export class TokenService {
     return tokenData;
   }
   async getDataByToken(refreshToken) {
-    const tokenData = await Token.findOne({
+    const tokenData = await Tokens.findOne({
       where: {
         refreshToken,
       },

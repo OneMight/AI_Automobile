@@ -1,14 +1,10 @@
 export class UserDto {
-  FIO_employee;
+  email;
   id;
-  isAdmin;
-  category;
-  speciality;
+  age;
   constructor(model) {
-    this.FIO_employee = model.FIO_Employee;
-    this.category = model.Category;
-    this.id = model.idEmployee;
-    this.speciality = model.Speciality;
-    this.isAdmin = model.isAdmin;
+    this.email = model.email;
+    this.id = model.id;
+    this.age = model.age;
   }
 }

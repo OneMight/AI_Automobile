@@ -5,4 +5,5 @@ const UserRouter = new Router();
 UserRouter.post("/register", user.register);
 UserRouter.post("/login", user.loginUser);
 UserRouter.post("/logout", user.logout);
+UserRouter.post("/getAuth", user.getUserByToken);
 export { UserRouter };

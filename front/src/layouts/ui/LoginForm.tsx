@@ -4,7 +4,7 @@ import { Lock, Mail, ArrowRight } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
 import { useState } from "react";
-
+import { LoginUser } from "@/api/userApi";
 export const LoginForm = () => {
   const { t } = useTranslation("Login");
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -37,7 +37,10 @@ export const LoginForm = () => {
       onChange: formSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
+      const data = await LoginUser(value);
+      if (data.message) {
+        alert(data.message);
+      }
     },
   });
 
@@ -54,23 +57,19 @@ export const LoginForm = () => {
         <form.Field
           name="email"
           children={(field) => {
-            const isSubmitted = field.form.state.submissionAttempts > 0;
-            const isTouched = focusedField !== field.name;
+            const hasErrors = field.state.meta.errors.length > 0;
             const showError =
-              isSubmitted && field.state.meta.errors.length > 0 && isTouched;
+              hasErrors &&
+              (field.form.state.submissionAttempts > 0 ||
+                field.state.meta.isTouched) &&
+              focusedField !== field.name;
             return (
               <Fields.Field>
                 <Fields.FieldLabel
                   htmlFor={field.name}
                   className={showError ? "text-red-500" : "text-secondary-text"}
                 >
-                  {showError
-                    ? field.state.meta.errors
-                        .map((err) =>
-                          typeof err === "object" ? err.message : err,
-                        )
-                        .join(", ")
-                    : t("emailLabel")}
+                  {showError ? t("invalidEmail") : t("emailLabel")}
                 </Fields.FieldLabel>
                 <div className="relative group">
                   <Input
@@ -108,10 +107,12 @@ export const LoginForm = () => {
         <form.Field
           name="password"
           children={(field) => {
+            const hasErrors = field.state.meta.errors.length > 0;
             const isTouched = focusedField !== field.name;
             const isSubmitted = field.form.state.submissionAttempts > 0;
             const showError =
-              isSubmitted && field.state.meta.errors.length > 0 && isTouched;
+              hasErrors &&
+              (isSubmitted || (field.state.meta.isTouched && isTouched));
 
             return (
               <Fields.Field>
