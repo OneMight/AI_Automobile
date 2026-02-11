@@ -3,8 +3,11 @@ import express from "express";
 import cors from "cors";
 import { router } from "./routes/index.js";
 import { sequelize } from "./db.js";
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import { swaggerOptions } from "./swagger.config.js";
 dotenv.config();
-
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(
@@ -13,12 +16,13 @@ app.use(
     credentials: true,
   }),
 );
+// console.log(JSON.stringify(swaggerDocs, null, 2));
 app.use(express.json());
 app.use("/api", router);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const start = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Соединение с базой данных успешно!");
     await sequelize.sync();
 
     app.listen(PORT, () => {

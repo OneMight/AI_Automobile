@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../db";
+import { sequelize } from "../db.js";
 
 const User = sequelize.define(
   "Users",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: true },
@@ -16,7 +16,7 @@ const User = sequelize.define(
 const Tokens = sequelize.define(
   "Tokens",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     refreshToken: { type: DataTypes.STRING(1024), allowNull: false },
   },
@@ -27,7 +27,7 @@ const Tokens = sequelize.define(
 const Statistics = sequelize.define(
   "Statistics",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     avg_percent: { type: DataTypes.DECIMAL, allowNull: false },
     recognitions: { type: DataTypes.INTEGER, allowNull: false },
@@ -39,7 +39,7 @@ const Statistics = sequelize.define(
 const DeterminedModels = sequelize.define(
   "DeterminedModels",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     idCar: { type: DataTypes.BIGINT, allowNull: false },
     determinedTime: { type: DataTypes.TIME, allowNull: false },
@@ -51,7 +51,7 @@ const DeterminedModels = sequelize.define(
 const Cars = sequelize.define(
   "Cars",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     mark: { type: DataTypes.STRING(50), allowNull: false },
     model: { type: DataTypes.STRING(100), allowNull: false },
     manufactureYear: { type: DataTypes.STRING, allowNull: false },
@@ -63,7 +63,7 @@ const Cars = sequelize.define(
 const Reviews = sequelize.define(
   "Reviews",
   {
-    id: { type: DataTypes.BIGINT, primaryKey: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     reting: { type: DataTypes.INTEGER, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: true },
@@ -88,4 +88,4 @@ DeterminedModels.belongsTo(User, { foreignKey: "idUser" });
 Cars.hasMany(DeterminedModels, { foreignKey: "idCar" });
 DeterminedModels.belongsTo(Cars, { foreignKey: "idCar" });
 
-export { User, Tokens, Cars, DeterminedModels, Tokens };
+export { User, Tokens, Cars, DeterminedModels, Statistics, Reviews };
