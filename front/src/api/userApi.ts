@@ -1,11 +1,15 @@
 import type { User, UserLogin } from "@/shared/types/types";
 import { axiosInstance } from "./index";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+type BackendError = {
+  message: string;
+};
 
 export const LoginUser = async ({
   email,
   password,
-}: UserLogin): Promise<{ message: string }> => {
+}: UserLogin): Promise<string | null> => {
   try {
     const response = await axiosInstance.post("/api/user/login", {
       email,
@@ -13,8 +17,12 @@ export const LoginUser = async ({
     });
     return response.data;
   } catch (error) {
-    console.log(error);
-    return { message: "email and password is incorrect" };
+    if (axios.isAxiosError(error)) {
+      const serverMessage = (error.response?.data as BackendError)?.message;
+
+      return serverMessage || error.message;
+    }
+    return "Неизвестная ошибка";
   }
 };
 export const useGetDataToken = () => {
@@ -44,7 +52,7 @@ export const Register = async ({
   email,
   password,
   age,
-}: User): Promise<{ message: string }> => {
+}: User): Promise<string | null> => {
   try {
     const response = await axiosInstance.post("/api/user/register", {
       email,
@@ -53,6 +61,11 @@ export const Register = async ({
     });
     return response.data;
   } catch (error) {
-    return { message: error as string };
+    if (axios.isAxiosError(error)) {
+      const serverMessage = (error.response?.data as BackendError)?.message;
+
+      return serverMessage || error.message;
+    }
+    return "Неизвестная ошибка";
   }
 };

@@ -22,7 +22,8 @@
     "smallPassword": "Пароль должен содержать больше 8 символов",
     "invalidEmail": "Неверная почта",
     "haventAccount": "У вас нет аккаунта?",
-    "register": "Зарегистрируйся"
+    "register": "Зарегистрируйся",
+    "invalidPassword": "Неверный пароль"
   },
   "Registration": {
     "title": "Добро пожаловать",
@@ -40,6 +41,7 @@
     "invalidEmail": "Неверная почта",
     "haventAccount": "У вас нет аккаунта?",
     "register": "Зарегистрируйся",
-    "passwordMatch": "Пароли должны совпадать"
+    "passwordMatch": "Пароли должны совпадать",
+    "errorMessage": "Данная почта уже зарегистрирована"
   }
 }

@@ -1,4 +1,4 @@
-import { Button, Fields, Input } from "@/components";
+import { Button, CustomAlert, Fields, Input } from "@/components";
 import { useTranslation } from "react-i18next";
 import { Lock, Mail, ArrowRight } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
@@ -10,6 +10,7 @@ import { ROUTES } from "@/shared/routes/routesPath";
 export const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Login");
+  const [isError, setIsError] = useState<string>("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formSchema = z.object({
     email: z
@@ -40,9 +41,11 @@ export const LoginForm = () => {
       onChange: formSchema,
     },
     onSubmit: async ({ value }) => {
-      const data = await LoginUser(value);
-      if (data.message) {
-        alert(data.message);
+      const errorMessage = await LoginUser(value);
+      if (errorMessage?.includes("email")) {
+        setIsError(t("invalidEmail"));
+      } else if (errorMessage!.includes!("password")) {
+        setIsError(t("invalidPassword"));
       } else {
         navigate({ to: ROUTES.DASHBOARD });
       }
@@ -58,6 +61,9 @@ export const LoginForm = () => {
       }}
       className="w-full flex flex-col items-center gap-5"
     >
+      {isError.length !== 0 && (
+        <CustomAlert error={isError} setIsError={setIsError} />
+      )}
       <Fields.FieldGroup className="gap-5">
         <form.Field
           name="email"

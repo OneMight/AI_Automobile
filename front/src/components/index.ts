@@ -3,4 +3,5 @@ import * as Fields from "./ui/Field";
 import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
 import * as Form from "./ui/Form";
-export { Button, Fields, Input, Label, Form };
+import { CustomAlert } from "./ui/CustomAlert";
+export { Button, Fields, Input, Label, Form, CustomAlert };

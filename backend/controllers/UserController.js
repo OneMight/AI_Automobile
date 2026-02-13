@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 const userService = new UserService();
 export class UserController {
   async register(req, res) {
-    const { email, age, password } = req.body;
+    const { email, age, password, role = "user" } = req.body;
     try {
       const user = await User.findOne({
         where: {
@@ -15,15 +15,22 @@ export class UserController {
         },
       });
       if (user) {
-        return res.status(400).json("User already exists");
+        return res.status(400).json({ message: "User already exists" });
       }
       const hashedPassword = await bcrypt.hash(password, 3);
-      const registeredUser = await User.create({
+      await User.create({
+        role,
         email,
         age,
         password: hashedPassword,
       });
-      return res.status(200).json(registeredUser);
+      const userData = await userService.login(email, password);
+      res.cookie("refreshToken", userData.refreshToken, {
+        maxAge: 2 * 60 * 60 * 1000,
+        httpOnly: true,
+        signed: true,
+      });
+      return res.status(200).json();
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -40,7 +47,7 @@ export class UserController {
         httpOnly: true,
         signed: true,
       });
-      return res.status(200).json(true);
+      return res.status(200).json();
     } catch (error) {
       return res.status(500).json(error);
     }

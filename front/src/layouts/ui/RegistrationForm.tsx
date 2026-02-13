@@ -1,4 +1,4 @@
-import { Button, Fields, Input } from "@/components";
+import { Button, CustomAlert, Fields, Input } from "@/components";
 import { useTranslation } from "react-i18next";
 import { Lock, Mail, ArrowRight } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
@@ -10,6 +10,7 @@ import { Register } from "@/api/userApi";
 export const RegistrationForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Registration");
+  const [isError, setIsError] = useState<string>("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formSchema = z
     .object({
@@ -54,9 +55,9 @@ export const RegistrationForm = () => {
       onChange: formSchema,
     },
     onSubmit: async ({ value }) => {
-      const data = await Register(value);
-      if (data.message) {
-        alert(data.message);
+      const errorMessage = await Register(value);
+      if (errorMessage!.includes("User")) {
+        setIsError(t("errorMessage"));
       } else {
         navigate({ to: ROUTES.DASHBOARD });
       }
@@ -72,6 +73,7 @@ export const RegistrationForm = () => {
       }}
       className="w-full flex flex-col items-center gap-5"
     >
+      {isError && <CustomAlert error={isError} setIsError={setIsError} />}
       <Fields.FieldGroup className="gap-5">
         <form.Field
           name="email"
