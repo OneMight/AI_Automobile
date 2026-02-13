@@ -6,6 +6,8 @@ import { router } from "./routes/index.js";
 import { sequelize } from "./db.js";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import basicAuth from "express-basic-auth";
+
 import { swaggerOptions } from "./swagger.config.js";
 dotenv.config();
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -21,7 +23,17 @@ app.use(
 app.use(express.json());
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use("/api", router);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+app.use(
+  "/api-docs",
+  basicAuth({
+    users: { [process.env.ADMINLOGIN]: process.env.ADMINPASSWORD },
+    challenge: true,
+    realm: "Admin page",
+  }),
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs),
+);
 const start = async () => {
   try {
     await sequelize.authenticate();
