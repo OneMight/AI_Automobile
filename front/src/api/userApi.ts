@@ -1,4 +1,4 @@
-import type { UserLogin } from "@/shared/types/types";
+import type { User, UserLogin } from "@/shared/types/types";
 import { axiosInstance } from "./index";
 import { useQuery } from "@tanstack/react-query";
 
@@ -38,4 +38,21 @@ export const useGetDataToken = () => {
     error,
     isLoading,
   };
+};
+
+export const Register = async ({
+  email,
+  password,
+  age,
+}: User): Promise<{ message: string }> => {
+  try {
+    const response = await axiosInstance.post("/api/user/register", {
+      email,
+      password,
+      age,
+    });
+    return response.data;
+  } catch (error) {
+    return { message: error as string };
+  }
 };

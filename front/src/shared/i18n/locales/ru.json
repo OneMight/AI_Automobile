@@ -20,6 +20,26 @@
     "passwordPlaceholder": "Введите пароль",
     "submit": "Войти в аккаунт",
     "smallPassword": "Пароль должен содержать больше 8 символов",
-    "invalidEmail": "Неверная почта"
+    "invalidEmail": "Неверная почта",
+    "haventAccount": "У вас нет аккаунта?",
+    "register": "Зарегистрируйся"
+  },
+  "Registration": {
+    "title": "Добро пожаловать",
+    "description": "Введите данные для доступа к NeuroScan",
+    "haveAccount": "Ваш аккаунт уже существует?",
+    "login": "Авторизуйся",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "Введите электронную почту",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "passwordRepeatLabel": "Подтвердите пароль",
+    "passwordRepeatPlaceholder": "Подтвердите пароль",
+    "submit": "Зарегистрироваться",
+    "smallPassword": "Пароль должен содержать больше 8 символов",
+    "invalidEmail": "Неверная почта",
+    "haventAccount": "У вас нет аккаунта?",
+    "register": "Зарегистрируйся",
+    "passwordMatch": "Пароли должны совпадать"
   }
 }

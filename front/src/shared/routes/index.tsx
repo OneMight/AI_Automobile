@@ -24,4 +24,28 @@ const loginRoute = createRoute({
     })),
   ),
 });
-export { rootRouter, indexRouter, loginRoute };
+const dashboardRoute = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.DASHBOARD,
+  component: React.lazy(() =>
+    import("@/pages/index").then((module) => ({
+      default: module.Dashboard,
+    })),
+  ),
+});
+const registrationRoute = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.REGISTER,
+  component: React.lazy(() =>
+    import("@/pages/index").then((module) => ({
+      default: module.Registration,
+    })),
+  ),
+});
+export {
+  rootRouter,
+  indexRouter,
+  loginRoute,
+  dashboardRoute,
+  registrationRoute,
+};

@@ -3,5 +3,4 @@ export type User = {
   password: string;
   age?: number;
 };
-
 export type UserLogin = Omit<User, "age">;

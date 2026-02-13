@@ -4,43 +4,57 @@ import { Lock, Mail, ArrowRight } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
 import { useState } from "react";
-import { LoginUser } from "@/api/userApi";
 import { useNavigate } from "@tanstack/react-router";
 import { ROUTES } from "@/shared/routes/routesPath";
-export const LoginForm = () => {
+import { Register } from "@/api/userApi";
+export const RegistrationForm = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("Login");
+  const { t } = useTranslation("Registration");
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const formSchema = z.object({
-    email: z
-      .string()
-      .email(t("invalidEmail"))
-      .refine(
-        (val) => {
-          const domain = val.split("@")[1];
-          const allowedDomains = [
-            "gmail.com",
-            "mail.ru",
-            "yandex.ru",
-            "outlook.com",
-            "icloud.com",
-          ];
-          return allowedDomains.includes(domain?.toLowerCase());
-        },
-        { message: t("invalidEmail") },
-      ),
-    password: z.string().min(8, t("smallPassword")),
-  });
+  const formSchema = z
+    .object({
+      email: z
+        .string()
+        .email(t("invalidEmail"))
+        .refine(
+          (val) => {
+            const domain = val.split("@")[1];
+            const allowedDomains = [
+              "gmail.com",
+              "mail.ru",
+              "yandex.ru",
+              "outlook.com",
+              "icloud.com",
+            ];
+            return allowedDomains.includes(domain?.toLowerCase());
+          },
+          { message: t("invalidEmail") },
+        ),
+      password: z.string().min(8, t("smallPassword")),
+      repeatPassword: z.string(),
+      age: z.int().gte(10).lte(120),
+    })
+    .superRefine(({ password, repeatPassword }, ctx) => {
+      if (password !== repeatPassword) {
+        ctx.addIssue({
+          code: "custom",
+          message: t("passwordMatch"),
+          path: ["repeatPassword"],
+        });
+      }
+    });
   const form = useForm({
     defaultValues: {
       email: "",
       password: "",
+      repeatPassword: "",
+      age: 10,
     },
     validators: {
       onChange: formSchema,
     },
     onSubmit: async ({ value }) => {
-      const data = await LoginUser(value);
+      const data = await Register(value);
       if (data.message) {
         alert(data.message);
       } else {
@@ -149,6 +163,64 @@ export const LoginForm = () => {
                       field.setMeta((prev) => ({ ...prev, isTouched: false }));
                     }}
                     placeholder={t("passwordPlaceholder")}
+                    className={
+                      showError ? "border-red-500 focus:border-red-500" : ""
+                    }
+                  >
+                    <Lock
+                      className={`absolute left-2 top-2 transition-colors pointer-events-none ${
+                        showError
+                          ? "text-red-500"
+                          : "group-focus-within:text-main"
+                      }`}
+                    />
+                  </Input>
+                </div>
+              </Fields.Field>
+            );
+          }}
+        />
+        <form.Field
+          name="repeatPassword"
+          children={(field) => {
+            const hasErrors = field.state.meta.errors.length > 0;
+            const hasSubmitions =
+              field.form.state.submissionAttempts > 0 ||
+              field.state.meta.isTouched;
+
+            const showError =
+              hasErrors && hasSubmitions && focusedField !== field.name;
+
+            return (
+              <Fields.Field>
+                <Fields.FieldLabel
+                  htmlFor={field.name}
+                  className={showError ? "text-red-500" : "text-secondary-text"}
+                >
+                  {showError
+                    ? field.state.meta.errors
+                        .map((err) =>
+                          typeof err === "object" ? err.message : err,
+                        )
+                        .join(", ")
+                    : t("passwordRepeatLabel")}
+                </Fields.FieldLabel>
+                <div className="relative group">
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    type="password"
+                    onFocus={() => setFocusedField(field.name)}
+                    value={field.state.value}
+                    onBlur={() => {
+                      setFocusedField(null);
+                      field.handleBlur();
+                    }}
+                    onChange={(e) => {
+                      field.handleChange(e.target.value);
+                      field.setMeta((prev) => ({ ...prev, isTouched: false }));
+                    }}
+                    placeholder={t("passwordRepeatPlaceholder")}
                     className={
                       showError ? "border-red-500 focus:border-red-500" : ""
                     }

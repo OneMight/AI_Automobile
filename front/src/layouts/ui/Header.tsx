@@ -7,7 +7,9 @@ import { useTranslation } from "react-i18next";
 export const Header = () => {
   const navigate = useNavigate();
   const path = useLocation();
-  const condition = !path.href.includes(ROUTES.LOGIN);
+  const condition = !(
+    path.href.includes(ROUTES.LOGIN) || path.href.includes(ROUTES.REGISTER)
+  );
   const { t } = useTranslation("Header");
   const handleDirect = (link: string) => () => {
     navigate({ to: link });
