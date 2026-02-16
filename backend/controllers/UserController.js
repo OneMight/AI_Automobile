@@ -1,4 +1,4 @@
-import { User } from "../models/models.js";
+import { Statistics, User } from "../models/models.js";
 import { UserService } from "../services/userService.js";
 import { TokenService } from "../services/tokenService.js";
 import bcrypt from "bcrypt";
@@ -18,11 +18,16 @@ export class UserController {
         return res.status(400).json({ message: "User already exists" });
       }
       const hashedPassword = await bcrypt.hash(password, 3);
-      await User.create({
+      const createdUser = await User.create({
         role,
         email,
         age,
         password: hashedPassword,
+      });
+      await Statistics.create({
+        idUser: createdUser.id,
+        avg_percent: 0,
+        recognitions: 0,
       });
       const userData = await userService.login(email, password);
       res.cookie("refreshToken", userData.refreshToken, {

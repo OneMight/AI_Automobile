@@ -15,7 +15,13 @@ export interface CustomLinkProps {
 }
 
 export interface UserContextType {
+  id: number;
   user: User | null;
   isLoading: boolean;
   isError: boolean;
+}
+export interface StatisticBlockProps {
+  title: string;
+  value: number | string;
+  icon: React.ReactNode;
 }

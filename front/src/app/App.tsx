@@ -4,7 +4,6 @@ import { Outlet } from "@tanstack/react-router";
 
 function App() {
   const { user, isLoading } = useUser();
-  console.log(user);
   return (
     <main className="w-full bg-main-app/80 min-h-screen flex flex-col items-center max-w-480 gap-15 relative">
       {!isLoading && user ? <LoginedHeader /> : <Header />}

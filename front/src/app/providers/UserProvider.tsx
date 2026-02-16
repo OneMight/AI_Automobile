@@ -7,6 +7,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const value = useMemo(
     () => ({
+      id: user?.id ?? 0,
       user: user ?? null,
       isLoading,
       isError,

@@ -32,6 +32,7 @@ const Statistics = sequelize.define(
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     avg_percent: { type: DataTypes.DECIMAL, allowNull: false },
     recognitions: { type: DataTypes.INTEGER, allowNull: false },
+    processingTime: { type: DataTypes.TIME, allowNull: true },
   },
   {
     timestamps: false,

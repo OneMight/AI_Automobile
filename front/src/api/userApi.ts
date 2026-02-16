@@ -1,4 +1,4 @@
-import type { User, UserLogin } from "@/shared/types/types";
+import type { RegisterUser, User, UserLogin } from "@/shared/types/types";
 import { axiosInstance } from "./index";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -54,7 +54,7 @@ export const Register = async ({
   email,
   password,
   age,
-}: User): Promise<string | null> => {
+}: RegisterUser): Promise<string | null> => {
   try {
     const response = await axiosInstance.post("/api/user/register", {
       email,
