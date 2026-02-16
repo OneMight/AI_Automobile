@@ -7,7 +7,7 @@ import { CarsRouter } from "./CarsRouter.js";
 const router = new Router();
 router.use("/user", UserRouter);
 router.use("/determinedModel", DeterminedModelsRouter);
-router.use("/statistic", StatisticsRouter);
+router.use("/statistics", StatisticsRouter);
 router.use("/review", ReviewsRouter);
 router.use("/car", CarsRouter);
 export { router };

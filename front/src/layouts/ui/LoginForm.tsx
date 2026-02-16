@@ -7,9 +7,11 @@ import { useState } from "react";
 import { LoginUser } from "@/api/userApi";
 import { useNavigate } from "@tanstack/react-router";
 import { ROUTES } from "@/shared/routes/routesPath";
+import { useQueryClient } from "@tanstack/react-query";
 export const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Login");
+  const queryClient = useQueryClient();
   const [isError, setIsError] = useState<string>("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formSchema = z.object({
@@ -47,6 +49,7 @@ export const LoginForm = () => {
       } else if (errorMessage!.includes!("password")) {
         setIsError(t("invalidPassword"));
       } else {
+        await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         navigate({ to: ROUTES.DASHBOARD });
       }
     },

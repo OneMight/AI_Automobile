@@ -7,10 +7,12 @@ import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { ROUTES } from "@/shared/routes/routesPath";
 import { Register } from "@/api/userApi";
+import { useQueryClient } from "@tanstack/react-query";
 export const RegistrationForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Registration");
   const [isError, setIsError] = useState<string>("");
+  const queryClient = useQueryClient();
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formSchema = z
     .object({
@@ -59,6 +61,7 @@ export const RegistrationForm = () => {
       if (errorMessage!.includes("User")) {
         setIsError(t("errorMessage"));
       } else {
+        await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         navigate({ to: ROUTES.DASHBOARD });
       }
     },

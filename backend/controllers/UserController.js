@@ -1,4 +1,4 @@
-import { User } from "../models/models.js";
+import { Statistics, User } from "../models/models.js";
 import { UserService } from "../services/userService.js";
 import { TokenService } from "../services/tokenService.js";
 import bcrypt from "bcrypt";
@@ -18,11 +18,16 @@ export class UserController {
         return res.status(400).json({ message: "User already exists" });
       }
       const hashedPassword = await bcrypt.hash(password, 3);
-      await User.create({
+      const createdUser = await User.create({
         role,
         email,
         age,
         password: hashedPassword,
+      });
+      await Statistics.create({
+        idUser: createdUser.id,
+        avg_percent: 0,
+        recognitions: 0,
       });
       const userData = await userService.login(email, password);
       res.cookie("refreshToken", userData.refreshToken, {
@@ -54,9 +59,10 @@ export class UserController {
   }
   async logout(req, res) {
     try {
-      const cookies = req.cookies;
+      const rawCookie =
+        req.signedCookies?.refreshToken || req.cookies?.refreshToken;
       const refreshToken = cookieParser.signedCookie(
-        cookies.refreshToken,
+        rawCookie,
         process.env.SECRET_KEY,
       );
       await userService.logout(refreshToken);
@@ -70,13 +76,14 @@ export class UserController {
   }
   async getUserByToken(req, res) {
     try {
-      const cookies = req.cookies;
+      const rawCookie =
+        req.signedCookies?.refreshToken || req.cookies?.refreshToken;
       const refreshToken = cookieParser.signedCookie(
-        cookies.refreshToken,
+        rawCookie,
         process.env.SECRET_KEY,
       );
       const user = await tokenService.getDataByToken(refreshToken);
-      return res.status(200).json(user.userDto);
+      return res.status(200).json(user);
     } catch (error) {
       return res.status(500).json({ message: `${error}` });
     }

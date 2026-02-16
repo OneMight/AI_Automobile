@@ -1,4 +1,4 @@
-import type { User, UserLogin } from "@/shared/types/types";
+import type { RegisterUser, User, UserLogin } from "@/shared/types/types";
 import { axiosInstance } from "./index";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -26,24 +26,26 @@ export const LoginUser = async ({
   }
 };
 export const useGetDataToken = () => {
-  const fetchToken = async () => {
-    const response = await axiosInstance.post("api/employee/token");
+  const fetchToken = async (): Promise<User | null> => {
+    const response = await axiosInstance.post("api/user/getAuth");
     return response.data;
   };
 
   const {
     data: user,
-    error,
+    isError,
     isLoading,
   } = useQuery({
     queryKey: ["userToken"],
     queryFn: fetchToken,
+    retry: 0,
     staleTime: 0,
+    gcTime: 0,
   });
 
   return {
     user,
-    error,
+    isError,
     isLoading,
   };
 };
@@ -52,7 +54,7 @@ export const Register = async ({
   email,
   password,
   age,
-}: User): Promise<string | null> => {
+}: RegisterUser): Promise<string | null> => {
   try {
     const response = await axiosInstance.post("/api/user/register", {
       email,
@@ -68,4 +70,7 @@ export const Register = async ({
     }
     return "Неизвестная ошибка";
   }
+};
+export const Logout = () => {
+  axiosInstance.post("/api/user/logout");
 };

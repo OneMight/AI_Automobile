@@ -45,6 +45,6 @@ export class TokenService {
       return new Error({ message: `User not authorized` });
     }
     const decoded = jwt.verify(refreshToken, process.env.SECRET_REFRESH_KEY);
-    return decoded;
+    return decoded.user;
   }
 }
