@@ -20,3 +20,16 @@ export type DeterminedModel = {
   model_image: string;
   file_name: string;
 };
+export type SimilarModel = {
+  confidence: number;
+  mark: string;
+  model: string;
+};
+export type RecognitionResponse = {
+  confidence: number;
+  mark: string;
+  model: string;
+  yearManufacture: string;
+  recognizedTime: number;
+  similarModels: SimilarModel[];
+};

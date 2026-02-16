@@ -9,7 +9,6 @@ export default function Dashboard() {
   const { user, isLoading } = useUser();
   const { t } = useTranslation("Dashboard");
   const { statistic, isStatisticLoading } = useGetStatisticsById(user?.id);
-  console.log(statistic);
   if (isLoading) {
     return <p>Loading</p>;
   }
