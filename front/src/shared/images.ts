@@ -5,6 +5,9 @@ import SpeedIcon from "@/assets/speed-icon.svg?react";
 import AccuracyIcon from "@/assets/accuracy-icon.svg?react";
 import ModelsIcon from "@/assets/models-icon.svg?react";
 import SingleLogo from "@/assets/single-logo.svg?react";
+import DashBoardIcon from "@/assets/dashboard-icon.svg?react";
+import UploadIcon from "@/assets/upload-icon.svg?react";
+import HistoryIcon from "@/assets/history-icon.svg?react";
 export {
   Logo,
   ExitIcon,
@@ -13,4 +16,7 @@ export {
   ModelsIcon,
   SpeedIcon,
   SingleLogo,
+  DashBoardIcon,
+  UploadIcon,
+  HistoryIcon,
 };

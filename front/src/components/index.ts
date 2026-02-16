@@ -4,4 +4,5 @@ import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
 import * as Form from "./ui/Form";
 import { CustomAlert } from "./ui/CustomAlert";
-export { Button, Fields, Input, Label, Form, CustomAlert };
+import { CustomLink } from "./ui/CustomLink";
+export { Button, Fields, Input, Label, Form, CustomAlert, CustomLink };

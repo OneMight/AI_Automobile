@@ -9,7 +9,10 @@
   },
   "Header": {
     "entire": "Войти",
-    "reviews": "Отзывы"
+    "reviews": "Отзывы",
+    "dashboard": "Панель управления",
+    "upload": "Определить",
+    "history": "История"
   },
   "Login": {
     "title": "С возвращением",

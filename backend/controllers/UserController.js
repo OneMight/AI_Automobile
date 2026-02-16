@@ -54,9 +54,10 @@ export class UserController {
   }
   async logout(req, res) {
     try {
-      const cookies = req.cookies;
+      const rawCookie =
+        req.signedCookies?.refreshToken || req.cookies?.refreshToken;
       const refreshToken = cookieParser.signedCookie(
-        cookies.refreshToken,
+        rawCookie,
         process.env.SECRET_KEY,
       );
       await userService.logout(refreshToken);
@@ -70,13 +71,14 @@ export class UserController {
   }
   async getUserByToken(req, res) {
     try {
-      const cookies = req.cookies;
+      const rawCookie =
+        req.signedCookies?.refreshToken || req.cookies?.refreshToken;
       const refreshToken = cookieParser.signedCookie(
-        cookies.refreshToken,
+        rawCookie,
         process.env.SECRET_KEY,
       );
       const user = await tokenService.getDataByToken(refreshToken);
-      return res.status(200).json(user.userDto);
+      return res.status(200).json(user);
     } catch (error) {
       return res.status(500).json({ message: `${error}` });
     }
