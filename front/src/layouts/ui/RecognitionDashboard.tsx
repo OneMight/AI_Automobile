@@ -1,4 +1,5 @@
 import { useGetModels } from "@/api/modelsApi";
+import { ModelBlock } from "@/components";
 import { ArrowRight } from "@/shared/images";
 import { ROUTES } from "@/shared/routes/routesPath";
 import { Link } from "@tanstack/react-router";
@@ -11,6 +12,7 @@ export const RecognitionDashboard = ({
 }) => {
   const { t } = useTranslation("Dashboard");
   const { models, isLoading } = useGetModels(idUser);
+  console.log(models);
   if (isLoading) {
     return <p>Loading</p>;
   }
@@ -26,8 +28,11 @@ export const RecognitionDashboard = ({
           <ArrowRight className="text-main group-hover:text-main/50" />
         </Link>
       </div>
-      <img src={models[0].modelImage} alt="" />
-      <div className="flex flex-col gap-4 items-start justify-center"></div>
+      <div className="flex flex-col gap-4 items-start justify-center w-full">
+        {models.map((model) => (
+          <ModelBlock key={model.id} model={model} />
+        ))}
+      </div>
     </div>
   ) : (
     <p className="font-bold text-2xl text-center">

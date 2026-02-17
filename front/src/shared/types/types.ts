@@ -14,15 +14,16 @@ export type Statistic = {
 };
 export type DeterminedModel = {
   id: number;
-  model: string;
-  mark: string;
-  manufactureYear: string;
+  Car: Car;
   confidence: number;
   determinedTime: number;
   modelImage: string;
 };
-
+export type Car = Omit<SimilarModel, "confidence"> & {
+  manufactureYear: string;
+};
 export type SimilarModel = {
+  idCar: number;
   confidence: number;
   mark: string;
   model: string;
@@ -48,5 +49,8 @@ export type PostDeterminedModel = Omit<
   DeterminedModel,
   "id" | "similarModels"
 > & {
+  id: number;
+};
+export type PostModel = {
   id: number;
 };

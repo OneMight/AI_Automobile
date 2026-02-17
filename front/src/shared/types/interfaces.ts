@@ -1,5 +1,5 @@
 import type React from "react";
-import type { User } from "./types";
+import type { DeterminedModel, User } from "./types";
 
 export interface BenefitProps {
   children: React.ReactElement;
@@ -24,4 +24,7 @@ export interface StatisticBlockProps {
   title: string;
   value: number | string;
   icon: React.ReactNode;
+}
+export interface ModelBlockProps {
+  model: DeterminedModel;
 }

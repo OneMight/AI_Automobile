@@ -23,7 +23,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use("/api", router);
-
+app.use("/uploads", express.static("uploads"));
 app.use(
   "/api-docs",
   basicAuth({
@@ -37,7 +37,7 @@ app.use(
 const start = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ force: true });
+    await sequelize.sync();
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

@@ -8,6 +8,7 @@ import { CustomLink } from "./ui/CustomLink";
 import { StatisticBlock } from "./ui/StatisticBlock";
 import * as Dialog from "./ui/Dialog";
 import { ModalRecognized } from "./ui/ModalRecognized";
+import { ModelBlock } from "./ui/ModelBlock";
 export {
   Button,
   Fields,
@@ -19,4 +20,5 @@ export {
   StatisticBlock,
   Dialog,
   ModalRecognized,
+  ModelBlock,
 };

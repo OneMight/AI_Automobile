@@ -10,6 +10,6 @@ class RecognitionResponse(BaseModel):
     model: str
     mark: str
     manufactureYear: str
-    recognizedTime: float 
+    determinedTime: float 
     confidence: float
     similarModels: List[SimilarModel]

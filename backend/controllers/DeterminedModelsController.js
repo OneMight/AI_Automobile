@@ -1,5 +1,14 @@
 import { Op } from "sequelize";
+import path from "path";
 import { Cars, DeterminedModels, Statistics } from "../models/models.js";
+import multer from "multer";
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+export const upload = multer({ storage });
 export class DeterminedModelsController {
   async getDeterminedModelsByUserId(req, res) {
     try {
@@ -8,6 +17,12 @@ export class DeterminedModelsController {
         where: {
           idUser: id,
         },
+        include: [
+          {
+            model: Cars,
+            required: true,
+          },
+        ],
       });
       if (!determinedModels) {
         return res.status(404).json({ message: "Determined models not found" });
@@ -20,14 +35,14 @@ export class DeterminedModelsController {
   async postDeterminedModel(req, res) {
     try {
       const { id } = req.params;
-      const {
-        mark,
-        model,
-        manufactureYear,
-        confidence,
-        recognizedTime,
-        modelImage,
-      } = req.body;
+      const { mark, model, manufactureYear, confidence, determinedTime } =
+        req.body;
+      if (!req.file) {
+        return res
+          .status(400)
+          .json({ message: "Файл не получен. Проверьте имя поля в FormData" });
+      }
+      const image = `/uploads/${req.file.filename}`;
       const car = await Cars.findOne({
         where: {
           mark: mark,
@@ -52,8 +67,8 @@ export class DeterminedModelsController {
         idUser: id,
         idCar: car.id,
         confidence,
-        determinedTime: recognizedTime,
-        modelImage,
+        determinedTime,
+        modelImage: image,
       });
       return res.status(200).json(determinedModel.id);
     } catch (error) {

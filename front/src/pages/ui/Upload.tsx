@@ -24,12 +24,17 @@ export const Upload = () => {
     formData.append("file", file);
     formData.append("userId", String(user.id));
 
+    const data = await uploadImage(formData);
+    setResult(data);
+    const newData = new FormData();
+    newData.append("image", file);
+    newData.append("mark", data.mark);
+    newData.append("model", data.model);
+    newData.append("manufactureYear", String(data.manufactureYear));
+    newData.append("confidence", String(data.confidence));
+    newData.append("determinedTime", String(data.determinedTime));
     try {
-      const data = await uploadImage(formData);
-      setResult(data);
-
-      const upload = { ...data, modelImage: imageObject, id: user.id };
-      const idModel = await postModel(upload);
+      const idModel = await postModel(newData, user.id);
       updateStatistic(user.id, idModel);
     } catch (error) {
       console.error("Ошибка ИИ:", error);

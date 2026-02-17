@@ -7,7 +7,7 @@ export const StatisticBlock = ({ title, value, icon }: StatisticBlockProps) => {
         <p className="text-secondary-text">{title}</p>
         {icon}
       </div>
-      <p className="font-bold text-2xl">{value == null ? "0" : value}</p>
+      <p className="font-bold text-2xl">{value}</p>
     </div>
   );
 };

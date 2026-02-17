@@ -87,7 +87,7 @@ def get_prediction_data(image_bytes: bytes):
         "mark": mark,
         "model": model,
         "manufactureYear": best_year_str,
-        "recognizedTime": round(end_time - start_time, 4),
-        "confidence": round(top_conf, 4),
+        "determinedTime": round(end_time - start_time, 2),
+        "confidence": round(top_conf, 2),
         "similarModels": similar_models
     }

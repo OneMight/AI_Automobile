@@ -1,4 +1,4 @@
-import { useGetModels } from "@/api/modelsApi";
+// import { useGetModels } from "@/api/modelsApi";
 import { useGetStatisticsById } from "@/api/statisticApi";
 import { StatisticBlock } from "@/components";
 import { RecognitionDashboard } from "@/layouts";
@@ -10,7 +10,8 @@ export default function Dashboard() {
   const { user, isLoading } = useUser();
   const { t } = useTranslation("Dashboard");
   const { statistic, isStatisticLoading } = useGetStatisticsById(user?.id);
-  const { models } = useGetModels(user?.id);
+  // const { models } = useGetModels(user?.id);
+
   if (isLoading) {
     return <p>Loading</p>;
   }
@@ -34,12 +35,12 @@ export default function Dashboard() {
               />
               <StatisticBlock
                 title={t("confidence")}
-                value={`${statistic.avg_percent}%`}
+                value={`${Math.round(statistic.avg_percent * 100)}%`}
                 icon={<RecognitionIcon />}
               />
               <StatisticBlock
                 title={t("time")}
-                value={statistic.processingTime}
+                value={`${statistic.processingTime !== null ? Math.round(parseFloat(statistic.processingTime) * 100) / 100 : 0}s`}
                 icon={<RecognitionIcon />}
               />
             </div>
