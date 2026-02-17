@@ -59,7 +59,7 @@ def get_prediction_data(image_bytes: bytes):
         model_name_only = model.split("_")[-1] 
 
         for cls_id, conf in zip(res_year.boxes.cls, res_year.boxes.conf):
-            class_name = res_year.names[int(cls_id)] # Например, "Golf_2012-2017"
+            class_name = res_year.names[int(cls_id)]
             conf = float(conf)
             
             if model_name_only.lower() in class_name.lower() or \
@@ -86,7 +86,7 @@ def get_prediction_data(image_bytes: bytes):
     return {
         "mark": mark,
         "model": model,
-        "yearManufacture": best_year_str,
+        "manufactureYear": best_year_str,
         "recognizedTime": round(end_time - start_time, 4),
         "confidence": round(top_conf, 4),
         "similarModels": similar_models

@@ -26,7 +26,7 @@ export const RecognitionDashboard = ({
           <ArrowRight className="text-main group-hover:text-main/50" />
         </Link>
       </div>
-
+      <img src={models[0].modelImage} alt="" />
       <div className="flex flex-col gap-4 items-start justify-center"></div>
     </div>
   ) : (

@@ -24,3 +24,9 @@ export const useGetStatisticsById = (id: number | undefined) => {
     isStatisticLoading,
   };
 };
+
+export const updateStatistic = async (id: number, idModel: number) => {
+  await axiosInstance.put(`api/statistics/${id}`, {
+    idModel,
+  });
+};

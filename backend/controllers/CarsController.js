@@ -30,4 +30,26 @@ export class CarsController {
       return res.status(500).json({ message: error });
     }
   }
+  CarMiddleware = async (req, res, next) => {
+    try {
+      const { mark, model, manufactureYear } = req.body;
+      const car = await Cars.findOne({
+        where: {
+          mark: mark,
+          model: model,
+          manufactureYear: manufactureYear,
+        },
+      });
+      if (!car) {
+        await Cars.create({
+          mark,
+          model,
+          manufactureYear,
+        });
+      }
+      next();
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
 }
