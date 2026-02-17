@@ -6,7 +6,7 @@ import cv2
 import random
 import math
 
-model = YOLO('./runs/detect/train2/weights/best.pt')
+model = YOLO('./runs/detect/train/weights/best.pt')
 
 test_folder = '../downloaded_images/Renault/Megane'
 number_of_class = 12

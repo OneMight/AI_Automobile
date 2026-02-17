@@ -1,10 +1,13 @@
-import type { DeterminedModel } from "@/shared/types/types";
+import type {
+  DeterminedModel,
+  PostDeterminedModel,
+} from "@/shared/types/types";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetModels = (id: number | undefined) => {
   const fetchModelsById = async (): Promise<DeterminedModel[]> => {
-    const response = await axiosInstance.get(`/api/determinedModel/${id}`);
+    const response = await axiosInstance.post(`/api/determinedModel/${id}`);
     return response.data;
   };
   const {
@@ -24,4 +27,15 @@ export const useGetModels = (id: number | undefined) => {
     isError,
     isLoading,
   };
+};
+export const postModel = async (
+  model: PostDeterminedModel,
+): Promise<number> => {
+  const response = await axiosInstance.post(
+    `/api/determinedModel/post/${model.id}`,
+    {
+      ...model,
+    },
+  );
+  return await response.data;
 };

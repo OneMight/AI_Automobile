@@ -42,10 +42,20 @@ const registrationRoute = createRoute({
     })),
   ),
 });
+const uploadRoute = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.UPLOAD,
+  component: React.lazy(() =>
+    import("@/pages/ui/Upload").then((module) => ({
+      default: module.Upload,
+    })),
+  ),
+});
 export {
   rootRouter,
   indexRouter,
   loginRoute,
   dashboardRoute,
   registrationRoute,
+  uploadRoute,
 };

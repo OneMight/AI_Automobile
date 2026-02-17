@@ -6,3 +6,10 @@ export const axiosInstance = axios.create({
   },
   withCredentials: true,
 });
+
+export const AiInstance = axios.create({
+  baseURL: "http://localhost:8000",
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});

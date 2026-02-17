@@ -32,7 +32,7 @@ const Statistics = sequelize.define(
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     avg_percent: { type: DataTypes.DECIMAL, allowNull: false },
     recognitions: { type: DataTypes.INTEGER, allowNull: false },
-    processingTime: { type: DataTypes.TIME, allowNull: true },
+    processingTime: { type: DataTypes.DECIMAL, allowNull: true },
   },
   {
     timestamps: false,
@@ -44,7 +44,9 @@ const DeterminedModels = sequelize.define(
     id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
     idCar: { type: DataTypes.BIGINT, allowNull: false },
-    determinedTime: { type: DataTypes.TIME, allowNull: false },
+    determinedTime: { type: DataTypes.DECIMAL, allowNull: false },
+    confidence: { type: DataTypes.FLOAT, allowNull: false },
+    modelImage: { type: DataTypes.STRING, allowNull: true },
   },
   {
     timestamps: false,

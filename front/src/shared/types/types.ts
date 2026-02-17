@@ -14,9 +14,39 @@ export type Statistic = {
 };
 export type DeterminedModel = {
   id: number;
-  model_name: string;
+  model: string;
+  mark: string;
+  manufactureYear: string;
   confidence: number;
-  recognitionTime: number;
-  model_image: string;
-  file_name: string;
+  determinedTime: number;
+  modelImage: string;
+};
+
+export type SimilarModel = {
+  confidence: number;
+  mark: string;
+  model: string;
+};
+export type RecognitionResponse = {
+  confidence: number;
+  mark: string;
+  model: string;
+  manufactureYear: string;
+  determinedTime: number;
+  similarModels: SimilarModel[];
+};
+
+export type ModalProps = {
+  recognizedModel: Omit<
+    RecognitionResponse,
+    "similarModels" | "recognizedTime"
+  >;
+
+  imageURL: string;
+};
+export type PostDeterminedModel = Omit<
+  DeterminedModel,
+  "id" | "similarModels"
+> & {
+  id: number;
 };

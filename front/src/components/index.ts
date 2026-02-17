@@ -6,6 +6,8 @@ import * as Form from "./ui/Form";
 import { CustomAlert } from "./ui/CustomAlert";
 import { CustomLink } from "./ui/CustomLink";
 import { StatisticBlock } from "./ui/StatisticBlock";
+import * as Dialog from "./ui/Dialog";
+import { ModalRecognized } from "./ui/ModalRecognized";
 export {
   Button,
   Fields,
@@ -15,4 +17,6 @@ export {
   CustomAlert,
   CustomLink,
   StatisticBlock,
+  Dialog,
+  ModalRecognized,
 };
