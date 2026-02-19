@@ -4,6 +4,7 @@ import { RegistrationForm } from "./ui/RegistrationForm";
 import { LoginedHeader } from "./ui/LoginedHeader";
 import { RecognitionDashboard } from "./ui/RecognitionDashboard";
 import { ImageUpload } from "./ui/ImageUpload";
+import { DataTable } from "./ui/DataTable";
 export {
   Header,
   LoginForm,
@@ -11,4 +12,5 @@ export {
   LoginedHeader,
   RecognitionDashboard,
   ImageUpload,
+  DataTable,
 };

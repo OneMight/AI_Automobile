@@ -38,20 +38,14 @@ const Statistics = sequelize.define(
     timestamps: false,
   },
 );
-const DeterminedModels = sequelize.define(
-  "DeterminedModels",
-  {
-    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
-    idUser: { type: DataTypes.BIGINT, allowNull: false },
-    idCar: { type: DataTypes.BIGINT, allowNull: false },
-    determinedTime: { type: DataTypes.DECIMAL, allowNull: false },
-    confidence: { type: DataTypes.FLOAT, allowNull: false },
-    modelImage: { type: DataTypes.STRING, allowNull: true },
-  },
-  {
-    timestamps: false,
-  },
-);
+const DeterminedModels = sequelize.define("DeterminedModels", {
+  id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
+  idUser: { type: DataTypes.BIGINT, allowNull: false },
+  idCar: { type: DataTypes.BIGINT, allowNull: false },
+  determinedTime: { type: DataTypes.DECIMAL, allowNull: false },
+  confidence: { type: DataTypes.FLOAT, allowNull: false },
+  modelImage: { type: DataTypes.STRING, allowNull: true },
+});
 const Cars = sequelize.define(
   "Cars",
   {

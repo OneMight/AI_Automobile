@@ -9,6 +9,8 @@ import { StatisticBlock } from "./ui/StatisticBlock";
 import * as Dialog from "./ui/Dialog";
 import { ModalRecognized } from "./ui/ModalRecognized";
 import { ModelBlock } from "./ui/ModelBlock";
+import * as Table from "./ui/Table";
+import { columns } from "./ui/Columns";
 export {
   Button,
   Fields,
@@ -21,4 +23,6 @@ export {
   Dialog,
   ModalRecognized,
   ModelBlock,
+  Table,
+  columns,
 };
