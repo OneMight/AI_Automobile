@@ -2,9 +2,11 @@ import type { DeterminedModel } from "@/shared/types/types";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetModels = (id: number | undefined) => {
+export const useGetModels = (id: number | undefined, limit?: number) => {
   const fetchModelsById = async (): Promise<DeterminedModel[]> => {
-    const response = await axiosInstance.post(`/api/determinedModel/${id}`);
+    const response = await axiosInstance.post(`/api/determinedModel/${id}`, {
+      limit,
+    });
     return response.data;
   };
   const {

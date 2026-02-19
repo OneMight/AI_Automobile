@@ -1,8 +1,8 @@
 import { useGetModels } from "@/api/modelsApi";
-import { ModelBlock } from "@/components";
+import { Button, ModelBlock } from "@/components";
 import { ArrowRight } from "@/shared/images";
 import { ROUTES } from "@/shared/routes/routesPath";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 export const RecognitionDashboard = ({
@@ -11,11 +11,14 @@ export const RecognitionDashboard = ({
   idUser: number | undefined;
 }) => {
   const { t } = useTranslation("Dashboard");
-  const { models, isLoading } = useGetModels(idUser);
-  console.log(models);
+  const navigate = useNavigate();
+  const { models, isLoading } = useGetModels(idUser, 10);
   if (isLoading) {
     return <p>Loading</p>;
   }
+  const handleDirectToHistory = () => {
+    navigate({ to: ROUTES.HISTORY });
+  };
   return typeof models !== "undefined" ? (
     <div className="w-full flex flex-col bg-secondary-bg p-4 gap-6">
       <div className="flex flex-row gap-3 w-full items-center justify-between">
@@ -33,6 +36,14 @@ export const RecognitionDashboard = ({
           <ModelBlock key={model.id} model={model} />
         ))}
       </div>
+      {models.length >= 10 && (
+        <div className="w-full flex flex-col gap-2">
+          <p className="text-center">...</p>
+          <Button className="w-full" onClick={handleDirectToHistory}>
+            {t("goToHistory")}
+          </Button>
+        </div>
+      )}
     </div>
   ) : (
     <p className="font-bold text-2xl text-center">

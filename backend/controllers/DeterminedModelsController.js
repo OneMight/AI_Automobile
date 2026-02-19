@@ -13,6 +13,7 @@ export class DeterminedModelsController {
   async getDeterminedModelsByUserId(req, res) {
     try {
       const id = req.params.id;
+      const { limit } = req.body;
       const determinedModels = await DeterminedModels.findAll({
         where: {
           idUser: id,
@@ -23,8 +24,10 @@ export class DeterminedModelsController {
             required: true,
           },
         ],
+        order: [["createdAt", "DESC"]],
+        limit: limit,
       });
-      if (!determinedModels) {
+      if (determinedModels.length == 0) {
         return res.status(404).json({ message: "Determined models not found" });
       }
       return res.status(200).json(determinedModels);
