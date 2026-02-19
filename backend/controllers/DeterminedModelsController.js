@@ -4,7 +4,7 @@ import { Cars, DeterminedModels, Statistics } from "../models/models.js";
 import multer from "multer";
 const storage = multer.diskStorage({
   destination: "./uploads/",
-  filename: (req, file, cb) => {
+  filename: (_, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });

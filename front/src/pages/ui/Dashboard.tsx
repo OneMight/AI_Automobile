@@ -1,4 +1,3 @@
-// import { useGetModels } from "@/api/modelsApi";
 import { useGetStatisticsById } from "@/api/statisticApi";
 import { StatisticBlock } from "@/components";
 import { RecognitionDashboard } from "@/layouts";
@@ -10,7 +9,6 @@ export default function Dashboard() {
   const { user, isLoading } = useUser();
   const { t } = useTranslation("Dashboard");
   const { statistic, isStatisticLoading } = useGetStatisticsById(user?.id);
-  // const { models } = useGetModels(user?.id);
 
   if (isLoading) {
     return <p>Loading</p>;

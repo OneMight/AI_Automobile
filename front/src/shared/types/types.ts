@@ -18,7 +18,9 @@ export type DeterminedModel = {
   confidence: number;
   determinedTime: number;
   modelImage: string;
+  createdAt: Date | string;
 };
+export type ModelTable = Omit<DeterminedModel, "Car"> & Omit<Car, "idCar">;
 export type Car = Omit<SimilarModel, "confidence"> & {
   manufactureYear: string;
 };

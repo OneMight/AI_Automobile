@@ -51,6 +51,15 @@ const uploadRoute = createRoute({
     })),
   ),
 });
+const historyPage = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.HISTORY,
+  component: React.lazy(() =>
+    import("@/pages/index").then((module) => ({
+      default: module.History,
+    })),
+  ),
+});
 export {
   rootRouter,
   indexRouter,
@@ -58,4 +67,5 @@ export {
   dashboardRoute,
   registrationRoute,
   uploadRoute,
+  historyPage,
 };
