@@ -8,7 +8,7 @@ export const axiosInstance = axios.create({
 });
 
 export const AiInstance = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://neuroscan-ai-module.onrender.com",
   headers: {
     "Content-Type": "multipart/form-data",
   },

@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from classes import RecognitionResponse 
 from recognize_car import get_prediction_data
-
+import os
 app = FastAPI()
 
 app.add_middleware(
@@ -25,4 +25,4 @@ async def predict(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=os.environ.get("$PORT") | 8000)
