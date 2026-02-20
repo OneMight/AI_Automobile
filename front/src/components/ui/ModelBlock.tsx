@@ -5,7 +5,7 @@ export const ModelBlock = ({ model }: ModelBlockProps) => {
     <div className="flex flex-row w-full justify-between items-center p-3 rounded-2xl bg-secondary-text/10">
       <div className="flex flex-row gap-3 items-center justify-start">
         <img
-          src={`http://localhost:5000${model.modelImage}`}
+          src={`${import.meta.env.VITE_API_URL}/${model.modelImage}`}
           className="w-20"
           alt=""
         />
