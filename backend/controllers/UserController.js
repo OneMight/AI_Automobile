@@ -34,6 +34,8 @@ export class UserController {
         maxAge: 2 * 60 * 60 * 1000,
         httpOnly: true,
         signed: true,
+        secure: true,
+        sameSite: "none",
       });
       return res.status(200).json();
     } catch (error) {
@@ -51,6 +53,8 @@ export class UserController {
         maxAge: 2 * 60 * 60 * 1000,
         httpOnly: true,
         signed: true,
+        secure: true,
+        sameSite: "none",
       });
       return res.status(200).json();
     } catch (error) {
