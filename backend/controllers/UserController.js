@@ -70,7 +70,11 @@ export class UserController {
         process.env.SECRET_KEY,
       );
       await userService.logout(refreshToken);
-      res.clearCookie("refreshToken");
+      res.clearCookie("refreshToken", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      });
       return res.status(200).json({ message: "Successfully logged out" });
     } catch (error) {
       return res
