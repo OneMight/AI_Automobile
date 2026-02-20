@@ -2,13 +2,31 @@ import { Op } from "sequelize";
 import path from "path";
 import { Cars, DeterminedModels, Statistics } from "../models/models.js";
 import multer from "multer";
-const storage = multer.diskStorage({
-  destination: "./uploads/",
-  filename: (_, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "car_recognitions",
+    allowed_formats: ["jpg", "png", "jpeg"],
   },
 });
-export const upload = multer({ storage });
+export const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//   destination: "./uploads/",
+//   filename: (_, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
+// export const upload = multer({ storage });
 export class DeterminedModelsController {
   async getDeterminedModelsByUserId(req, res) {
     try {
@@ -45,7 +63,8 @@ export class DeterminedModelsController {
           .status(400)
           .json({ message: "Файл не получен. Проверьте имя поля в FormData" });
       }
-      const image = `/uploads/${req.file.filename}`;
+      // const image = `/uploads/${req.file.filename}`;
+      const image = req.file.filename;
       const car = await Cars.findOne({
         where: {
           mark: mark,
