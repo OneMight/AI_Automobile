@@ -64,7 +64,7 @@ export class DeterminedModelsController {
           .json({ message: "Файл не получен. Проверьте имя поля в FormData" });
       }
       // const image = `/uploads/${req.file.filename}`;
-      const image = req.file.filename;
+      const image = req.file.path;
       const car = await Cars.findOne({
         where: {
           mark: mark,
