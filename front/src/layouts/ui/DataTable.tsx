@@ -12,19 +12,20 @@ import type {
   SortingState,
 } from "@tanstack/react-table";
 
-import { Button, Input, Table } from "@/components";
+import { AccordionTable, Button, Input, Table } from "@/components";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import type { ModelTable } from "@/shared/types/types";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps<_, TValue> {
+  columns: ColumnDef<ModelTable, TValue>[];
+  data: ModelTable[];
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<ModelTable, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<ModelTable, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const { t } = useTranslation("Table");
@@ -56,7 +57,10 @@ export function DataTable<TData, TValue>({
         <Table.Table>
           <Table.TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <Table.TableRow key={headerGroup.id} className=" border-white/30">
+              <Table.TableRow
+                key={headerGroup.id}
+                className=" border-white/30 flex flex-row items-end justify-between"
+              >
                 {headerGroup.headers.map((header) => {
                   return (
                     <Table.TableHead
@@ -78,23 +82,25 @@ export function DataTable<TData, TValue>({
           <Table.TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <Table.TableRow
-                  className="group hover:bg-white/5 border-white/30"
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <Table.TableCell
-                      key={cell.id}
-                      className="text-secondary-text group-hover:text-white py-3"
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </Table.TableCell>
-                  ))}
-                </Table.TableRow>
+                <AccordionTable content={row.original} key={row.id}>
+                  <Table.TableRow
+                    className="group hover:bg-white/5 border-white/30 w-full flex flex-row items-center justify-between"
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <Table.TableCell
+                        key={cell.id}
+                        className="text-secondary-text group-hover:text-white py-3"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Table.TableCell>
+                    ))}
+                  </Table.TableRow>
+                </AccordionTable>
               ))
             ) : (
               <Table.TableRow>

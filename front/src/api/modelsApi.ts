@@ -37,6 +37,7 @@ export const postModel = async (
     {
       headers: {
         "Content-Type": undefined,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     },
   );

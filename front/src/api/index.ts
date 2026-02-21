@@ -3,6 +3,7 @@ export const axiosInstance = axios.create({
   baseURL: "http://localhost:5000", //https://neuroscan-backend-ogps.onrender.com
   headers: {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
   withCredentials: true,
 });
@@ -12,4 +13,8 @@ export const AiInstance = axios.create({
   headers: {
     "Content-Type": "multipart/form-data",
   },
+});
+axiosInstance.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  return config;
 });

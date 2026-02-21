@@ -37,7 +37,7 @@ export class UserController {
         secure: true,
         sameSite: "none",
       });
-      return res.status(200).json();
+      return res.status(200).json(userData.refreshToken);
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -56,7 +56,7 @@ export class UserController {
         secure: true,
         sameSite: "none",
       });
-      return res.status(200).json();
+      return res.status(200).json(userData.refreshToken);
     } catch (error) {
       return res.status(500).json(error);
     }
@@ -79,21 +79,21 @@ export class UserController {
     } catch (error) {
       return res
         .status(500)
-        .json({ message: `Internal server error ${error}` });
+        .json({ message: `Internal server error ${error.message}` });
     }
   }
   async getUserByToken(req, res) {
     try {
-      const rawCookie =
-        req.signedCookies?.refreshToken || req.cookies?.refreshToken;
-      const refreshToken = cookieParser.signedCookie(
-        rawCookie,
+      const { refreshToken } = req.body;
+
+      const refreshTokenVerifyed = cookieParser.signedCookie(
+        refreshToken,
         process.env.SECRET_KEY,
       );
-      const user = await tokenService.getDataByToken(refreshToken);
+      const user = await tokenService.getDataByToken(refreshTokenVerifyed);
       return res.status(200).json(user);
     } catch (error) {
-      return res.status(500).json({ message: `${error}` });
+      return res.status(500).json({ message: `${error.message}` });
     }
   }
 }

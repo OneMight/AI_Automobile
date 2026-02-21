@@ -60,8 +60,9 @@ export const RegistrationForm = () => {
       const errorMessage = await Register(value);
       if (errorMessage!.includes("User")) {
         setIsError(t("errorMessage"));
-      } else {
+      } else if (typeof errorMessage == "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
+        localStorage.setItem("refreshToken", errorMessage);
         navigate({ to: ROUTES.DASHBOARD });
       }
     },
