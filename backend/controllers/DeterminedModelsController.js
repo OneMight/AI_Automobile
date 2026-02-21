@@ -19,7 +19,7 @@ const storage = new CloudinaryStorage({
   },
 });
 export const upload = multer({ storage: storage });
-// const upload = multer({ storage: storage });
+
 // const storage = multer.diskStorage({
 //   destination: "./uploads/",
 //   filename: (_, file, cb) => {

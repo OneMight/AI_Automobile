@@ -11,6 +11,7 @@ import { ModalRecognized } from "./ui/ModalRecognized";
 import { ModelBlock } from "./ui/ModelBlock";
 import * as Table from "./ui/Table";
 import { columns } from "./ui/Columns";
+import * as AlertDialog from "@/components/ui/AlertDialog";
 export {
   Button,
   Fields,
@@ -25,4 +26,5 @@ export {
   ModelBlock,
   Table,
   columns,
+  AlertDialog,
 };

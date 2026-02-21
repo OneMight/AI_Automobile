@@ -28,3 +28,8 @@ export interface StatisticBlockProps {
 export interface ModelBlockProps {
   model: DeterminedModel;
 }
+export interface RecognitionErrorProps {
+  title: string;
+  desctiption: string | null;
+  setError: (value: null) => void;
+}

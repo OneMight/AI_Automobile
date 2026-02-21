@@ -1,6 +1,6 @@
 import axios from "axios";
 export const axiosInstance = axios.create({
-  baseURL: "https://neuroscan-backend-ogps.onrender.com",
+  baseURL: "http://localhost:5000", //https://neuroscan-backend-ogps.onrender.com
   headers: {
     "Content-Type": "application/json",
   },
