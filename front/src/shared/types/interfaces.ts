@@ -1,5 +1,5 @@
 import type React from "react";
-import type { DeterminedModel, ModelTable, User } from "./types";
+import type { DeterminedModel, User } from "./types";
 import type { ReactNode } from "react";
 
 export interface BenefitProps {
