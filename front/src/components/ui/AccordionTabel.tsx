@@ -18,7 +18,7 @@ export const AccordionTable = ({
         </Accordion.AccordionTrigger>
         <Accordion.AccordionContent className="flex flex-row items-start gap-10 justify-start p-4">
           <img
-            className="max-w-100"
+            className="max-w-70"
             src={content.modelImage}
             alt={`${content.mark}_${content.model}`}
           />
@@ -40,7 +40,7 @@ export const AccordionTable = ({
                 <p className="text-secondary-text">{t("confidence")}</p>
                 <p className="text-center text-xl"> {content.confidence}%</p>
               </div>
-              <div className="bg-secondary-bg p-5">
+              <div className="bg-secondary-bg p-5 min-w-40">
                 <p className="text-secondary-text">{t("processingTime")}</p>
                 <p
                   className={cn(
