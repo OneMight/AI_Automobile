@@ -64,6 +64,7 @@ export const RegistrationForm = () => {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         localStorage.setItem("refreshToken", errorMessage);
         navigate({ to: ROUTES.DASHBOARD });
+        window.location.href = ROUTES.DASHBOARD;
       }
     },
   });

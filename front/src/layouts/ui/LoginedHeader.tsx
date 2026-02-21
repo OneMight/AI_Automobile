@@ -1,5 +1,5 @@
 import { Logout } from "@/api/userApi";
-import { Button, CustomLink } from "@/components";
+import { Burger, Button, CustomLink } from "@/components";
 import { cn } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -22,13 +22,14 @@ export const LoginedHeader = () => {
     queryClient.setQueryData(["userToken"], null);
     queryClient.removeQueries({ queryKey: ["userToken"] });
     navigate({ to: ROUTES.HOME, replace: true });
+    window.location.href = ROUTES.HOME;
   };
   return (
-    <header className=" flex flex-row items-center justify-between p-3 px-6 w-full max-w-480">
+    <header className=" flex flex-row items-center justify-between p-3 px-3 mobile:px-6 w-full max-w-480">
       <Link to={ROUTES.DASHBOARD}>
         <Logo />
       </Link>
-      <nav className=" flex flex-row gap-1 items-center">
+      <nav className="hidden tablet:flex flex-row gap-1 items-center">
         <Link to={ROUTES.DASHBOARD} className="group">
           {({ isActive }) => (
             <CustomLink
@@ -85,7 +86,10 @@ export const LoginedHeader = () => {
           )}
         </Link>
       </nav>
-      <div className="flex flex-row gap-5 items-center">
+      <div className="block tablet:hidden">
+        <Burger />
+      </div>
+      <div className="hidden tablet:flex flex-row gap-5 items-center">
         <Button
           className="bg-transparent hover:bg-transparent p-0 group"
           onClick={handleLogout}

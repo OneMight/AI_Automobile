@@ -75,6 +75,9 @@ body {
   --color-great: var(--great);
   --color-good: var(--good);
   --color-bad: var(--bad);
+  --breakpoint-xl: 900px;
+  --breakpoint-mobile: 500px;
+  --breakpoint-tablet: 680px;
 }
 
 @theme inline {

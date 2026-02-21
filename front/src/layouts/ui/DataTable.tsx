@@ -115,7 +115,7 @@ export function DataTable<ModelTable, TValue>({
           </Table.TableBody>
         </Table.Table>
       </div>
-      <div className="flex flex-row w-full items-center justify-between mb-10">
+      <div className="flex flex-col mobile:flex-row w-full items-center justify-between mb-10">
         <p>
           {t("page")}: {table.getState().pagination.pageIndex + 1} {t("of")}{" "}
           {table.getPageCount()}

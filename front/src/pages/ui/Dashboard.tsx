@@ -14,7 +14,7 @@ export default function Dashboard() {
     return <p>Loading</p>;
   }
   return (
-    <div className="flex flex-col gap-5 w-full p-10">
+    <div className="flex flex-col gap-5 w-full mobile:px-10 px-3 ">
       <div className="flex gap-2 flex-col">
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-secondary-text">{t("description")}</p>
@@ -25,7 +25,7 @@ export default function Dashboard() {
       ) : (
         statistic !== undefined && (
           <div className="flex flex-col gap-10 w-full">
-            <div className="flex flex-row gap-10 w-full">
+            <div className="flex flex-col xl:flex-row gap-10 w-full">
               <StatisticBlock
                 title={t("recognitions")}
                 value={statistic.recognitions}

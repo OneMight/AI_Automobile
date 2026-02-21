@@ -12,7 +12,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
       </div>
       <HomeMain />
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-col xl:flex-row gap-10 mb-4">
         <Benefit title="0.15s" description={t("speed")}>
           <SpeedIcon />
         </Benefit>

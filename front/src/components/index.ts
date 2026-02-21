@@ -14,6 +14,8 @@ import { columns } from "./ui/Columns";
 import * as AlertDialog from "./ui/AlertDialog";
 import * as Accordion from "./ui/Accordion";
 import { AccordionTable } from "./ui/AccordionTabel";
+import * as DropDownMenu from "./ui/DropDownMenu";
+import { Burger } from "./ui/Burger";
 export {
   Button,
   Fields,
@@ -31,4 +33,6 @@ export {
   AlertDialog,
   Accordion,
   AccordionTable,
+  DropDownMenu,
+  Burger,
 };
