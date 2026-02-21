@@ -1,6 +1,6 @@
 import axios from "axios";
 export const axiosInstance = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}`, //https://neuroscan-backend-ogps.onrender.com
+  baseURL: `${import.meta.env.VITE_API_URL}`,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -9,7 +9,7 @@ export const axiosInstance = axios.create({
 });
 
 export const AiInstance = axios.create({
-  baseURL: "https://maykess-neuroscan-aimodule.hf.space", //http://localhost:8000
+  baseURL: "https://maykess-neuroscan-aimodule.hf.space",
   headers: {
     "Content-Type": "multipart/form-data",
   },
