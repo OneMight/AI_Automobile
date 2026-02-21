@@ -1,0 +1,8 @@
+{
+  "short_name": "NeuroScan",
+  "name": "Neuro Scan App",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#020617",
+  "background_color": "#020617"
+}

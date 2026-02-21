@@ -25,7 +25,7 @@ export default function Dashboard() {
       ) : (
         statistic !== undefined && (
           <div className="flex flex-col gap-10 w-full">
-            <div className="flex flex-col xl:flex-row gap-10 w-full">
+            <div className="flex flex-col xl:flex-row gap-10 w-full mb-3">
               <StatisticBlock
                 title={t("recognitions")}
                 value={statistic.recognitions}
