@@ -4,11 +4,7 @@ export const ModelBlock = ({ model }: ModelBlockProps) => {
   return (
     <div className="flex flex-row w-full justify-between items-center p-3 rounded-2xl bg-secondary-text/10">
       <div className="flex flex-row gap-3 items-center justify-start">
-        <img
-          src={`http:localhost:5000/${model.modelImage}`}
-          className="w-20"
-          alt=""
-        />
+        <img src={model.modelImage} className="w-20" alt="" />
         <p className="text-white">
           {model.Car?.mark} {model.Car?.model} {model.Car?.manufactureYear}
         </p>

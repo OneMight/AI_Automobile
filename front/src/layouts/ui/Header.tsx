@@ -21,13 +21,6 @@ export const Header = () => {
       </Link>
       {condition && (
         <div className="flex flex-row items-center gap-10">
-          <Link
-            to={ROUTES.LOGIN}
-            className="text-sm hover:text-slate-200 text-secondary-text"
-          >
-            {t("reviews")}
-          </Link>
-
           <Button
             className="text-button-text"
             onClick={handleDirect(ROUTES.LOGIN)}

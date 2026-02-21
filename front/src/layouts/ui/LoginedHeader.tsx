@@ -21,6 +21,7 @@ export const LoginedHeader = () => {
     Logout();
     queryClient.setQueryData(["userToken"], null);
     queryClient.removeQueries({ queryKey: ["userToken"] });
+    window.location.reload();
     navigate({ to: ROUTES.HOME, replace: true });
   };
   return (

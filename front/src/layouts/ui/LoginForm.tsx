@@ -51,6 +51,7 @@ export const LoginForm = () => {
       } else if (typeof errorMessage === "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         localStorage.setItem("refreshToken", errorMessage);
+        window.location.reload();
         navigate({ to: ROUTES.DASHBOARD });
       }
     },
