@@ -1,5 +1,6 @@
 import type React from "react";
-import type { DeterminedModel, User } from "./types";
+import type { DeterminedModel, ModelTable, User } from "./types";
+import type { ReactNode } from "react";
 
 export interface BenefitProps {
   children: React.ReactElement;
@@ -27,4 +28,13 @@ export interface StatisticBlockProps {
 }
 export interface ModelBlockProps {
   model: DeterminedModel;
+}
+export interface RecognitionErrorProps {
+  title: string;
+  desctiption: string | null;
+  setError: (value: null) => void;
+}
+export interface AccordionProps<TData> {
+  children: ReactNode;
+  content: TData;
 }

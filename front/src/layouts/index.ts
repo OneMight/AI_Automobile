@@ -5,6 +5,7 @@ import { LoginedHeader } from "./ui/LoginedHeader";
 import { RecognitionDashboard } from "./ui/RecognitionDashboard";
 import { ImageUpload } from "./ui/ImageUpload";
 import { DataTable } from "./ui/DataTable";
+import { RecognitionErrorAlert } from "./ui/RecognitionErrorAlert";
 export {
   Header,
   LoginForm,
@@ -13,4 +14,5 @@ export {
   RecognitionDashboard,
   ImageUpload,
   DataTable,
+  RecognitionErrorAlert,
 };

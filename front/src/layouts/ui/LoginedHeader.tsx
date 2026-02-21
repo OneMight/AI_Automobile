@@ -86,7 +86,6 @@ export const LoginedHeader = () => {
         </Link>
       </nav>
       <div className="flex flex-row gap-5 items-center">
-        Status: Online
         <Button
           className="bg-transparent hover:bg-transparent p-0 group"
           onClick={handleLogout}

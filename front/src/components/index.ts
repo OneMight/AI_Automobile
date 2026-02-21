@@ -11,6 +11,9 @@ import { ModalRecognized } from "./ui/ModalRecognized";
 import { ModelBlock } from "./ui/ModelBlock";
 import * as Table from "./ui/Table";
 import { columns } from "./ui/Columns";
+import * as AlertDialog from "./ui/AlertDialog";
+import * as Accordion from "./ui/Accordion";
+import { AccordionTable } from "./ui/AccordionTabel";
 export {
   Button,
   Fields,
@@ -25,4 +28,7 @@ export {
   ModelBlock,
   Table,
   columns,
+  AlertDialog,
+  Accordion,
+  AccordionTable,
 };

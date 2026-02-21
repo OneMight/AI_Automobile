@@ -60,6 +60,9 @@ body {
   --secondary-text: #94a3b8;
   --main-app: #020617;
   --button-stroke: #1e293b;
+  --great: #51bb1f;
+  --good: #d6da14;
+  --bad: #cc1a1a;
 }
 @theme {
   --color-main: var(--main);
@@ -69,6 +72,9 @@ body {
   --color-hover-button-bg: var(--hover-button-bg);
   --color-button-stroke: var(--button-stroke);
   --color-secondary-bg: var(--secondary-bg);
+  --color-great: var(--great);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
 }
 
 @theme inline {

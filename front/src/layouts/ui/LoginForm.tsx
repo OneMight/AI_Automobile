@@ -48,8 +48,9 @@ export const LoginForm = () => {
         setIsError(t("invalidEmail"));
       } else if (errorMessage!.includes!("password")) {
         setIsError(t("invalidPassword"));
-      } else {
+      } else if (typeof errorMessage === "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
+        localStorage.setItem("refreshToken", errorMessage);
         navigate({ to: ROUTES.DASHBOARD });
       }
     },

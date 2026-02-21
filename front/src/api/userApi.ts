@@ -25,9 +25,11 @@ export const LoginUser = async ({
     return "Неизвестная ошибка";
   }
 };
-export const useGetDataToken = () => {
+export const useGetDataToken = (refreshToken: string | null) => {
   const fetchToken = async (): Promise<User | null> => {
-    const response = await axiosInstance.post("api/user/getAuth");
+    const response = await axiosInstance.post("api/user/getAuth", {
+      refreshToken: refreshToken,
+    });
     return response.data;
   };
 
@@ -36,9 +38,10 @@ export const useGetDataToken = () => {
     isError,
     isLoading,
   } = useQuery({
-    queryKey: ["userToken"],
+    queryKey: ["userToken", refreshToken],
     queryFn: fetchToken,
     retry: 0,
+    enabled: !!refreshToken,
     staleTime: 0,
     gcTime: 0,
   });
@@ -72,5 +75,6 @@ export const Register = async ({
   }
 };
 export const Logout = () => {
+  localStorage.removeItem("refreshToken");
   axiosInstance.post("/api/user/logout");
 };

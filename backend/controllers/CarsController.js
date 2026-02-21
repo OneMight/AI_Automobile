@@ -11,7 +11,7 @@ export class CarsController {
 
       return res.json(cars);
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
       return res
         .status(500)
         .json({ message: "Ошибка сервера при получении машин" });

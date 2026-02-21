@@ -44,7 +44,7 @@ export type ModalProps = {
     RecognitionResponse,
     "similarModels" | "recognizedTime"
   >;
-
+  setResult: (value: null) => void;
   imageURL: string;
 };
 export type PostDeterminedModel = Omit<
@@ -55,4 +55,7 @@ export type PostDeterminedModel = Omit<
 };
 export type PostModel = {
   id: number;
+};
+export type Error = {
+  detail: string;
 };

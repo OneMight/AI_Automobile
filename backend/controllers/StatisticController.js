@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import { DeterminedModels, Statistics } from "../models/models.js";
 export class StatisticController {
   async getStatisticsById(req, res) {

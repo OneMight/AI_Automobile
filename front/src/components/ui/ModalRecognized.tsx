@@ -1,31 +1,56 @@
 import { useTranslation } from "react-i18next";
-import { Dialog } from "..";
+import { Button, Dialog } from "..";
 import type { ModalProps } from "@/shared/types/types";
 import { Link } from "@tanstack/react-router";
 import { ROUTES } from "@/shared/routes/routesPath";
+import { useEffect, useState } from "react";
 
-export const ModalRecognized = ({ recognizedModel, imageURL }: ModalProps) => {
+export const ModalRecognized = ({
+  recognizedModel,
+  imageURL,
+  setResult,
+}: ModalProps) => {
   const { t } = useTranslation("UploadPage");
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+  const handleClose = () => {
+    setResult(null);
+    setIsOpen(false);
+  };
   return (
-    <Dialog.Dialog>
-      <Dialog.DialogTrigger>open</Dialog.DialogTrigger>
+    <Dialog.Dialog
+      open={isOpen}
+      onOpenChange={handleClose}
+      defaultOpen={isOpen}
+    >
       <Dialog.DialogContent className="bg-secondary-bg border-0">
         <Dialog.DialogHeader className="text-xl">
-          <span className="text-main">{t("congratulations")}</span>{" "}
+          <Dialog.DialogTitle>
+            {" "}
+            <span className="text-main">{t("congratulations")}</span>{" "}
+          </Dialog.DialogTitle>
           {recognizedModel.mark} {recognizedModel.model}{" "}
           {recognizedModel.manufactureYear} {t("withConfidence")}{" "}
           {recognizedModel.confidence * 100}%
         </Dialog.DialogHeader>
+        <Dialog.DialogDescription>
+          {" "}
+          <img
+            src={imageURL}
+            alt={`${recognizedModel.mark}_${recognizedModel.model}_${recognizedModel.manufactureYear}`}
+          />
+        </Dialog.DialogDescription>
 
-        <img
-          src={imageURL}
-          alt={`${recognizedModel.mark}_${recognizedModel.model}_${recognizedModel.manufactureYear}`}
-        />
         <Dialog.DialogFooter>
           <Dialog.DialogClose>
             <Link to={ROUTES.HISTORY}>{t("historyLink")}</Link>
           </Dialog.DialogClose>
-          <Dialog.DialogClose>{t("close")}</Dialog.DialogClose>
+          <Dialog.DialogClose asChild>
+            <Button onClick={handleClose}>{t("close")}</Button>
+          </Dialog.DialogClose>
         </Dialog.DialogFooter>
       </Dialog.DialogContent>
     </Dialog.Dialog>

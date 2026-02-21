@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import { useGetDataToken } from "@/api/userApi";
 import { UserContext } from "@/lib/useUser";
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const { user, isLoading, isError } = useGetDataToken();
+  const refreshToken = localStorage.getItem("refreshToken");
+
+  const { user, isLoading, isError } = useGetDataToken(refreshToken);
 
   const value = useMemo(
     () => ({
