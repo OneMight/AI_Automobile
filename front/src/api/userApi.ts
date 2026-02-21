@@ -40,7 +40,7 @@ export const useGetDataToken = (refreshToken: string | null) => {
   } = useQuery({
     queryKey: ["userToken", refreshToken],
     queryFn: fetchToken,
-    retry: 0,
+    retry: 1,
     enabled: !!refreshToken,
     staleTime: 0,
     gcTime: 0,

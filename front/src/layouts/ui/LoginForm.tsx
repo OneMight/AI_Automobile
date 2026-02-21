@@ -8,6 +8,7 @@ import { LoginUser } from "@/api/userApi";
 import { useNavigate } from "@tanstack/react-router";
 import { ROUTES } from "@/shared/routes/routesPath";
 import { useQueryClient } from "@tanstack/react-query";
+import { cn } from "@/lib/utils";
 export const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Login");
@@ -51,8 +52,8 @@ export const LoginForm = () => {
       } else if (typeof errorMessage === "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         localStorage.setItem("refreshToken", errorMessage);
-        window.location.reload();
         navigate({ to: ROUTES.DASHBOARD });
+        window.location.href = ROUTES.DASHBOARD;
       }
     },
   });
@@ -102,9 +103,9 @@ export const LoginForm = () => {
                       field.setMeta((prev) => ({ ...prev, isTouched: false }));
                     }}
                     placeholder={t("emailPlaceholder")}
-                    className={
-                      showError ? "border-red-500 focus:border-red-500" : ""
-                    }
+                    className={cn(
+                      showError ? "border-red-500 focus:border-red-500" : "",
+                    )}
                   >
                     <Mail
                       className={`absolute left-2 top-2 transition-colors pointer-events-none ${

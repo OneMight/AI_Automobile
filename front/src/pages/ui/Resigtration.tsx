@@ -11,7 +11,9 @@ export const Registration = () => {
       <div className="flex flex-col items-center justify-center gap-5">
         <SingleLogo />
         <h1 className="font-bold text-2xl">{t("title")}</h1>
-        <p className="text-sm text-secondary-text">{t("description")}</p>
+        <p className="text-sm text-secondary-text text-center">
+          {t("description")}
+        </p>
       </div>
       <RegistrationForm />
       <p>

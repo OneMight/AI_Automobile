@@ -63,8 +63,8 @@ export const RegistrationForm = () => {
       } else if (typeof errorMessage == "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
         localStorage.setItem("refreshToken", errorMessage);
-        window.location.reload();
         navigate({ to: ROUTES.DASHBOARD });
+        window.location.href = ROUTES.DASHBOARD;
       }
     },
   });
