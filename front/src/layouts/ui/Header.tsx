@@ -15,12 +15,15 @@ export const Header = () => {
     navigate({ to: link });
   };
   return (
-    <header className=" flex flex-row items-center justify-between p-3 px-6 w-full max-w-480">
+    <header className="flex flex-row items-center justify-between p-3 px-2 mobile:px-6 w-full max-w-480">
       <Link to={ROUTES.HOME}>
         <Logo />
       </Link>
       {condition && (
-        <div className="flex flex-row items-center gap-10">
+        <div className="flex flex-row items-center gap-3 mobile:gap-10">
+          <Link to={ROUTES.REVIEWS} className="hover:text-main transition-all">
+            {t("reviews")}
+          </Link>
           <Button
             className="text-button-text"
             onClick={handleDirect(ROUTES.LOGIN)}

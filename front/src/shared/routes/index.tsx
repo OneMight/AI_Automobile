@@ -60,6 +60,15 @@ const historyPage = createRoute({
     })),
   ),
 });
+const reviewsPage = createRoute({
+  getParentRoute: () => rootRouter,
+  path: ROUTES.REVIEWS,
+  component: React.lazy(() =>
+    import("@/pages/index").then((module) => ({
+      default: module.Reviews,
+    })),
+  ),
+});
 export {
   rootRouter,
   indexRouter,
@@ -68,4 +77,5 @@ export {
   registrationRoute,
   uploadRoute,
   historyPage,
+  reviewsPage,
 };

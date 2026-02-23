@@ -6,6 +6,7 @@ import { RecognitionDashboard } from "./ui/RecognitionDashboard";
 import { ImageUpload } from "./ui/ImageUpload";
 import { DataTable } from "./ui/DataTable";
 import { RecognitionErrorAlert } from "./ui/RecognitionErrorAlert";
+import { ReviewModal } from "./ui/ReviewModal";
 export {
   Header,
   LoginForm,
@@ -15,4 +16,5 @@ export {
   ImageUpload,
   DataTable,
   RecognitionErrorAlert,
+  ReviewModal,
 };

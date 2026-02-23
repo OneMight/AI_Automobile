@@ -6,6 +6,7 @@ import {
   registrationRoute,
   uploadRoute,
   historyPage,
+  reviewsPage,
 } from ".";
 
 export const routeTree = rootRouter.addChildren([
@@ -15,4 +16,5 @@ export const routeTree = rootRouter.addChildren([
   registrationRoute,
   uploadRoute,
   historyPage,
+  reviewsPage,
 ]);

@@ -38,3 +38,9 @@ export interface AccordionProps<TData> {
   children: ReactNode;
   content: TData;
 }
+export interface StarRatingProps {
+  rating: number;
+  interactive?: boolean;
+  onRatingChange?: (rating: number) => void;
+  size?: number;
+}

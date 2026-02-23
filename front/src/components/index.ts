@@ -16,6 +16,8 @@ import * as Accordion from "./ui/Accordion";
 import { AccordionTable } from "./ui/AccordionTabel";
 import * as DropDownMenu from "./ui/DropDownMenu";
 import { Burger } from "./ui/Burger";
+import { Textarea } from "./ui/TextArea";
+import { StarRating } from "./ui/StarRating";
 export {
   Button,
   Fields,
@@ -35,4 +37,6 @@ export {
   AccordionTable,
   DropDownMenu,
   Burger,
+  Textarea,
+  StarRating,
 };

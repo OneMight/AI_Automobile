@@ -4,4 +4,5 @@ import Dashboard from "./ui/Dashboard";
 import { Registration } from "./ui/Resigtration";
 import { Upload } from "./ui/Upload";
 import { History } from "./ui/History";
-export { Home, Login, Dashboard, Registration, Upload, History };
+import { Reviews } from "./ui/Reviews";
+export { Home, Login, Dashboard, Registration, Upload, History, Reviews };

@@ -3,7 +3,7 @@ export type User = {
   email: string;
   password: string;
   age?: number;
-  role: "user" | "admin";
+  role: "user" | "admin" | "owner";
 };
 export type RegisterUser = Omit<User, "role" | "id">;
 export type UserLogin = Omit<User, "age" | "role" | "id">;
