@@ -1,5 +1,11 @@
 import dotenv from "dotenv";
-import { carPath, userPaths } from "./swaggerPaths/index.js";
+import {
+  carPath,
+  userPaths,
+  determinedModelsPaths,
+  reviewsPaths,
+  statisticsPaths,
+} from "./swaggerPaths/index.js";
 dotenv.config();
 export const swaggerOptions = {
   definition: {
@@ -8,7 +14,13 @@ export const swaggerOptions = {
       title: "AI Automobile API",
       version: "1.0.0",
     },
-    paths: { ...userPaths, ...carPath },
+    paths: {
+      ...userPaths,
+      ...carPath,
+      ...determinedModelsPaths,
+      ...reviewsPaths,
+      ...statisticsPaths,
+    },
     components: {
       schemas: {
         Car: {

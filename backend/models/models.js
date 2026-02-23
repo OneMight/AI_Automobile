@@ -63,9 +63,8 @@ const Reviews = sequelize.define(
   {
     id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     idUser: { type: DataTypes.BIGINT, allowNull: false },
-    reting: { type: DataTypes.INTEGER, allowNull: false },
+    rating: { type: DataTypes.INTEGER, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: true },
-    created: { type: DataTypes.TIME, allowNull: false },
   },
   {
     timestamps: false,
