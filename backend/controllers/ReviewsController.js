@@ -1,4 +1,5 @@
-import { Reviews } from "../models/models.js";
+import { sequelize } from "../db.js";
+import { Reviews, User } from "../models/models.js";
 export class ReviewsController {
   async postReview(req, res) {
     try {
@@ -21,6 +22,20 @@ export class ReviewsController {
       const reviews = await Reviews.findAndCountAll({
         limit: limit,
         offset: offset,
+        include: [
+          {
+            model: User,
+            attributes: [],
+          },
+        ],
+        attributes: {
+          include: [
+            [sequelize.col("User.email"), "email"],
+            [sequelize.col("User.role"), "role"],
+          ],
+        },
+        order: [["createdAt", "DESC"]],
+        raw: true,
       });
       return res.status(200).json(reviews);
     } catch (error) {

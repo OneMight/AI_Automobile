@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import type { StarRatingProps } from "@/shared/types/interfaces";
 import { Star } from "lucide-react";
 import { useState } from "react";
@@ -7,11 +8,17 @@ export const StarRating = ({
   interactive = false,
   onRatingChange,
   size = 20,
+  className,
 }: StarRatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const displayRating = hoverRating !== null ? hoverRating : rating;
   return (
-    <div className="flex gap-1 bg-main-app p-3 w-35 rounded-xl border border-button-stroke">
+    <div
+      className={cn(
+        "flex gap-1 bg-main-app p-3 w-35 rounded-xl border border-button-stroke",
+        className,
+      )}
+    >
       {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}

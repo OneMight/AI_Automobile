@@ -58,18 +58,12 @@ const Cars = sequelize.define(
     timestamps: false,
   },
 );
-const Reviews = sequelize.define(
-  "Reviews",
-  {
-    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
-    idUser: { type: DataTypes.BIGINT, allowNull: false },
-    rating: { type: DataTypes.INTEGER, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: true },
-  },
-  {
-    timestamps: false,
-  },
-);
+const Reviews = sequelize.define("Reviews", {
+  id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
+  idUser: { type: DataTypes.BIGINT, allowNull: false },
+  rating: { type: DataTypes.INTEGER, allowNull: false },
+  description: { type: DataTypes.STRING, allowNull: true },
+});
 User.hasMany(Reviews, { foreignKey: "idUser" });
 Reviews.belongsTo(User, { foreignKey: "idUser" });
 

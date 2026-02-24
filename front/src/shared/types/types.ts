@@ -3,8 +3,9 @@ export type User = {
   email: string;
   password: string;
   age?: number;
-  role: "user" | "admin" | "owner";
+  role: Role;
 };
+export type Role = "user" | "admin" | "owner";
 export type RegisterUser = Omit<User, "role" | "id">;
 export type UserLogin = Omit<User, "age" | "role" | "id">;
 export type Statistic = {
@@ -58,4 +59,16 @@ export type PostModel = {
 };
 export type Error = {
   detail: string;
+};
+export type ReviewsResponse = {
+  count: number;
+  rows: Reviews[];
+};
+export type Reviews = {
+  id: number;
+  rating: number;
+  description: string;
+  email: string;
+  role: Role;
+  createdAt: Date;
 };

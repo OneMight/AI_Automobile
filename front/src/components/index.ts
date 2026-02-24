@@ -18,6 +18,8 @@ import * as DropDownMenu from "./ui/DropDownMenu";
 import { Burger } from "./ui/Burger";
 import { Textarea } from "./ui/TextArea";
 import { StarRating } from "./ui/StarRating";
+import { Spinner } from "./ui/Spinner";
+import { Review } from "./ui/Review";
 export {
   Button,
   Fields,
@@ -39,4 +41,6 @@ export {
   Burger,
   Textarea,
   StarRating,
+  Spinner,
+  Review,
 };

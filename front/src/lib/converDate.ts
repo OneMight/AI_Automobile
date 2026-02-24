@@ -9,3 +9,11 @@ export const convertDate = (date: Date) => {
     `${dateObj.getSeconds() < 10 ? `0${dateObj.getSeconds()}` : `${dateObj.getSeconds()}`}`
   );
 };
+export const convertYear = (date: Date) => {
+  const dateObj = new Date(date);
+  return (
+    `${dateObj.getDate() < 10 ? `0${dateObj.getDate()}` : `${dateObj.getDate()}`}.` +
+    `${dateObj.getMonth() + 1 < 10 ? `0${dateObj.getMonth() + 1}` : `${dateObj.getMonth() + 1}`}.` +
+    `${dateObj.getFullYear()} `
+  );
+};
