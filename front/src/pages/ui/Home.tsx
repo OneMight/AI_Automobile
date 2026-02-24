@@ -1,5 +1,6 @@
 import { Benefit } from "@/components/ui/Benefit";
 import { HomeMain } from "@/components/ui/HomeMain";
+import { HomeCarousel } from "@/layouts";
 import { SpeedIcon } from "@/shared/images";
 import { useTranslation } from "react-i18next";
 export default function Home() {
@@ -22,6 +23,17 @@ export default function Home() {
         <Benefit title="40+" description={t("models")}>
           <SpeedIcon />
         </Benefit>
+      </div>
+      <div className="max-w-400 w-full bg-secondary-bg p-2 mobile:p-8 flex flex-col items-start gap-10 justify-center">
+        <div className="flex flex-col items-start gap-3">
+          <h1 className="text-xl tablet:text-3xl font-bold">
+            {t("usersReviews")}
+          </h1>
+          <p className="text-sm tablet:text-xl text-secondary-text">
+            {t("letKnow")}
+          </p>
+        </div>
+        <HomeCarousel />
       </div>
     </div>
   );

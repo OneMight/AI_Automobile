@@ -47,4 +47,5 @@ export interface StarRatingProps {
 }
 export interface ReviewsBlockProps {
   review: Reviews;
+  className?: string;
 }

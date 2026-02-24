@@ -20,6 +20,7 @@ import { Textarea } from "./ui/TextArea";
 import { StarRating } from "./ui/StarRating";
 import { Spinner } from "./ui/Spinner";
 import { Review } from "./ui/Review";
+import * as Carousel from "./ui/Carousel";
 export {
   Button,
   Fields,
@@ -43,4 +44,5 @@ export {
   StarRating,
   Spinner,
   Review,
+  Carousel,
 };

@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { axiosInstance } from ".";
 import type { ReviewsResponse } from "@/shared/types/types";
 
@@ -31,4 +31,21 @@ export const pushReview = async ({
     description: description,
     rating: rating,
   });
+};
+export const useGetLatestReviews = (limit: number) => {
+  const getReviews = async (): Promise<ReviewsResponse> => {
+    const response = await axiosInstance.get(`api/reviews?limit=${limit}`);
+    return response.data;
+  };
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["CarouselReview"],
+    queryFn: getReviews,
+    staleTime: 0,
+    gcTime: 0,
+  });
+  return {
+    data,
+    isLoading,
+    isError,
+  };
 };

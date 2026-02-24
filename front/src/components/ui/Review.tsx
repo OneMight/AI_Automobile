@@ -3,10 +3,16 @@ import { StarRating } from "./StarRating";
 import type { ReviewsBlockProps } from "@/shared/types/interfaces";
 import { User } from "lucide-react";
 import { convertYear } from "@/lib/converDate";
+import { cn } from "@/lib/utils";
 
-export const Review = ({ review }: ReviewsBlockProps) => {
+export const Review = ({ review, className }: ReviewsBlockProps) => {
   return (
-    <div className="min-w-75 w-full flex flex-col items-start gap-3 p-5 bg-secondary-bg rounded-2xl">
+    <div
+      className={cn(
+        "min-w-75 w-full flex flex-col items-start gap-3 p-5 bg-secondary-bg rounded-2xl",
+        className,
+      )}
+    >
       <div className="flex flex-row gap-3 items-center">
         <Avatar.Avatar className="bg-main-app p-3 rounded-full">
           <Avatar.AvatarFallback>
