@@ -29,7 +29,7 @@ export const LoginedHeader = () => {
       <Link to={ROUTES.DASHBOARD}>
         <Logo />
       </Link>
-      <nav className="hidden tablet:flex flex-row gap-1 items-center">
+      <nav className="hidden header:flex flex-row gap-1 items-center">
         <Link to={ROUTES.DASHBOARD} className="group">
           {({ isActive }) => (
             <CustomLink
@@ -85,11 +85,18 @@ export const LoginedHeader = () => {
             </CustomLink>
           )}
         </Link>
+        <Link to={ROUTES.REVIEWS} className="group">
+          {({ isActive }) => (
+            <CustomLink route={ROUTES.REVIEWS} isActive={isActive}>
+              {t("reviews")}
+            </CustomLink>
+          )}
+        </Link>
       </nav>
-      <div className="block tablet:hidden">
+      <div className="block header:hidden">
         <Burger />
       </div>
-      <div className="hidden tablet:flex flex-row gap-5 items-center">
+      <div className="hidden header:flex flex-row gap-5 items-center">
         <Button
           className="bg-transparent hover:bg-transparent p-0 group"
           onClick={handleLogout}

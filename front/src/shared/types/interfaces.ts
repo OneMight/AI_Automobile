@@ -1,5 +1,5 @@
 import type React from "react";
-import type { DeterminedModel, User } from "./types";
+import type { DeterminedModel, Reviews, User } from "./types";
 import type { ReactNode } from "react";
 
 export interface BenefitProps {
@@ -11,7 +11,7 @@ export interface CustomLinkProps {
   route: string;
   children: React.ReactNode;
   className?: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   isActive: boolean;
 }
 
@@ -37,4 +37,15 @@ export interface RecognitionErrorProps {
 export interface AccordionProps<TData> {
   children: ReactNode;
   content: TData;
+}
+export interface StarRatingProps {
+  rating: number;
+  interactive?: boolean;
+  onRatingChange?: (rating: number) => void;
+  size?: number;
+  className?: string;
+}
+export interface ReviewsBlockProps {
+  review: Reviews;
+  className?: string;
 }

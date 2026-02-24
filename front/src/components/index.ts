@@ -16,6 +16,11 @@ import * as Accordion from "./ui/Accordion";
 import { AccordionTable } from "./ui/AccordionTabel";
 import * as DropDownMenu from "./ui/DropDownMenu";
 import { Burger } from "./ui/Burger";
+import { Textarea } from "./ui/TextArea";
+import { StarRating } from "./ui/StarRating";
+import { Spinner } from "./ui/Spinner";
+import { Review } from "./ui/Review";
+import * as Carousel from "./ui/Carousel";
 export {
   Button,
   Fields,
@@ -35,4 +40,9 @@ export {
   AccordionTable,
   DropDownMenu,
   Burger,
+  Textarea,
+  StarRating,
+  Spinner,
+  Review,
+  Carousel,
 };

@@ -91,6 +91,15 @@ export const Burger = () => {
               )}
             </Link>
           </DropDownMenu.DropdownMenuItem>
+          <DropDownMenu.DropdownMenuItem>
+            <Link to={ROUTES.REVIEWS} className="group">
+              {({ isActive }) => (
+                <CustomLink route={ROUTES.REVIEWS} isActive={isActive}>
+                  {t("reviews")}
+                </CustomLink>
+              )}
+            </Link>
+          </DropDownMenu.DropdownMenuItem>
         </DropDownMenu.DropdownMenuGroup>
         <DropDownMenu.DropdownMenuGroup>
           <DropDownMenu.DropdownMenuItem>

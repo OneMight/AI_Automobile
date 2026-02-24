@@ -8,6 +8,6 @@ const router = new Router();
 router.use("/user", UserRouter);
 router.use("/determinedModel", DeterminedModelsRouter);
 router.use("/statistics", StatisticsRouter);
-router.use("/review", ReviewsRouter);
+router.use("/reviews", ReviewsRouter);
 router.use("/car", CarsRouter);
 export { router };
