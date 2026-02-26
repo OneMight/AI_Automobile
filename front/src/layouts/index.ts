@@ -8,6 +8,10 @@ import { DataTable } from "./ui/DataTable";
 import { RecognitionErrorAlert } from "./ui/RecognitionErrorAlert";
 import { ReviewModal } from "./ui/ReviewModal";
 import { HomeCarousel } from "./ui/HomeCarousel";
+import { OwnerHeader } from "./ui/OwnerHeader";
+import { OwnerTable } from "./ui/OwnerTable";
+import { AgesCharts } from "./ui/AgesCharts";
+import { RecognitionsCharts } from "./ui/RecognitionsCharts";
 export {
   Header,
   LoginForm,
@@ -19,4 +23,8 @@ export {
   RecognitionErrorAlert,
   ReviewModal,
   HomeCarousel,
+  OwnerHeader,
+  OwnerTable,
+  AgesCharts,
+  RecognitionsCharts,
 };

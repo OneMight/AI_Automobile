@@ -49,3 +49,20 @@ export interface ReviewsBlockProps {
   review: Reviews;
   className?: string;
 }
+export interface AgeData {
+  category: string;
+  count: number;
+}
+
+export interface PropsAge {
+  data: AgeData[];
+}
+
+export interface RecognitionData {
+  day: string;
+  count: number;
+}
+
+export interface PropsLine {
+  data: RecognitionData[];
+}

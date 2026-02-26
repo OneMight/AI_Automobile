@@ -1,4 +1,4 @@
-import type { DeterminedModel } from "@/shared/types/types";
+import type { DeterminedModel, OwnerResponse } from "@/shared/types/types";
 import { axiosInstance } from ".";
 import { useQuery } from "@tanstack/react-query";
 
@@ -42,4 +42,23 @@ export const postModel = async (
     },
   );
   return await response.data;
+};
+
+export const useGetAllModels = () => {
+  const getAllModels = async (): Promise<OwnerResponse> => {
+    const response = await axiosInstance.get(`/api/determinedModel/`);
+    return response.data;
+  };
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["getAllModels"],
+    queryFn: getAllModels,
+    staleTime: 0,
+    gcTime: 0,
+  });
+  return {
+    data,
+    isLoading,
+    isError,
+  };
 };

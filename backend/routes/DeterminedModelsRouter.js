@@ -14,4 +14,5 @@ DeterminedModelsRouter.post(
   carController.CarMiddleware,
   determined.postDeterminedModel,
 );
+DeterminedModelsRouter.get("/", determined.getAllDeterminedModels);
 export { DeterminedModelsRouter };

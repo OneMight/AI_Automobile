@@ -22,6 +22,15 @@ export type DeterminedModel = {
   createdAt: Date | string;
 };
 export type ModelTable = Omit<DeterminedModel, "Car"> & Omit<Car, "idCar">;
+export type OwnerTableTypes = Omit<DeterminedModel, "Car"> &
+  Omit<Car, "idCar"> & {
+    email: string;
+  };
+
+export type OwnerResponse = {
+  count: number;
+  rows: OwnerTableTypes[];
+};
 export type Car = Omit<SimilarModel, "confidence"> & {
   manufactureYear: string;
 };

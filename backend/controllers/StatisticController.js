@@ -1,4 +1,6 @@
-import { DeterminedModels, Statistics } from "../models/models.js";
+import { Op } from "sequelize";
+import { DeterminedModels, Statistics, User } from "../models/models.js";
+import { sequelize } from "../db.js";
 export class StatisticController {
   async getStatisticsById(req, res) {
     try {
@@ -63,6 +65,64 @@ export class StatisticController {
       return res.status(200).json();
     } catch (error) {
       console.error(error);
+      return res.status(500).json({ message: error.message });
+    }
+  }
+  async getUserAgeStats(_, res) {
+    try {
+      const ages = await User.findAll({
+        attributes: [
+          [
+            sequelize.literal(
+              `SUM(CASE WHEN age >= 10 AND age < 18 THEN 1 ELSE 0 END)`,
+            ),
+            "young",
+          ],
+          [
+            sequelize.literal(
+              `SUM(CASE WHEN age >= 18 AND age < 30 THEN 1 ELSE 0 END)`,
+            ),
+            "adult",
+          ],
+          [
+            sequelize.literal(`SUM(CASE WHEN age >= 30 THEN 1 ELSE 0 END)`),
+            "senior",
+          ],
+        ],
+      });
+
+      const result = [
+        { category: "10-18", count: parseInt(ages[0].dataValues.young) || 0 },
+        { category: "18-30", count: parseInt(ages[0].dataValues.adult) || 0 },
+        { category: "30+", count: parseInt(ages[0].dataValues.senior) || 0 },
+      ];
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
+  async getRecognitionStats(_, res) {
+    try {
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+      const stats = await DeterminedModels.findAll({
+        attributes: [
+          [sequelize.fn("DATE", sequelize.col("createdAt")), "day"],
+          [sequelize.fn("COUNT", sequelize.col("id")), "count"],
+        ],
+        where: {
+          createdAt: {
+            [Op.gte]: sevenDaysAgo,
+          },
+        },
+        group: [sequelize.fn("DATE", sequelize.col("createdAt"))],
+        order: [[sequelize.fn("DATE", sequelize.col("createdAt")), "ASC"]],
+      });
+
+      return res.status(200).json(stats);
+    } catch (error) {
       return res.status(500).json({ message: error.message });
     }
   }

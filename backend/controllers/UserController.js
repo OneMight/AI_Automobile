@@ -37,7 +37,10 @@ export class UserController {
         secure: true,
         sameSite: "none",
       });
-      return res.status(200).json(userData.refreshToken);
+      return res.status(200).json({
+        refreshToken: userData.refreshToken,
+        role: userData.user.role,
+      });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -56,7 +59,10 @@ export class UserController {
         secure: true,
         sameSite: "none",
       });
-      return res.status(200).json(userData.refreshToken);
+      return res.status(200).json({
+        refreshToken: userData.refreshToken,
+        role: userData.user.role,
+      });
     } catch (error) {
       return res.status(500).json(error);
     }

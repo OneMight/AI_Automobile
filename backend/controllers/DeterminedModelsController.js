@@ -1,9 +1,8 @@
-import { Op } from "sequelize";
-import path from "path";
-import { Cars, DeterminedModels, Statistics } from "../models/models.js";
+import { Cars, DeterminedModels, Statistics, User } from "../models/models.js";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
+import { sequelize } from "../db.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -95,6 +94,33 @@ export class DeterminedModelsController {
       return res.status(200).json(determinedModel.id);
     } catch (error) {
       // console.log(error.message);
+      return res.status(500).json({ message: error.message });
+    }
+  }
+  async getAllDeterminedModels(req, res) {
+    try {
+      const determinedModels = await DeterminedModels.findAndCountAll({
+        include: [
+          {
+            model: Cars,
+            attributes: [],
+          },
+          {
+            model: User,
+            attributes: [],
+          },
+        ],
+        attributes: {
+          include: [
+            [sequelize.col("User.email"), "email"],
+            [sequelize.col("Car.mark"), "mark"],
+            [sequelize.col("Car.model"), "model"],
+            [sequelize.col("Car.manufactureYear"), "manufactureYear"],
+          ],
+        },
+      });
+      return res.status(200).json(determinedModels);
+    } catch (error) {
       return res.status(500).json({ message: error.message });
     }
   }

@@ -21,6 +21,7 @@ import { StarRating } from "./ui/StarRating";
 import { Spinner } from "./ui/Spinner";
 import { Review } from "./ui/Review";
 import * as Carousel from "./ui/Carousel";
+import { ownerColumns } from "./ui/OwnerColumns";
 export {
   Button,
   Fields,
@@ -45,4 +46,5 @@ export {
   Spinner,
   Review,
   Carousel,
+  ownerColumns,
 };

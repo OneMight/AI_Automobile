@@ -1,15 +1,19 @@
-import type { RegisterUser, User, UserLogin } from "@/shared/types/types";
+import type { RegisterUser, Role, User, UserLogin } from "@/shared/types/types";
 import { axiosInstance } from "./index";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 type BackendError = {
   message: string;
 };
-
+type LoginResponse = {
+  role?: Role;
+  refreshToken?: string;
+  message: string;
+};
 export const LoginUser = async ({
   email,
   password,
-}: UserLogin): Promise<string | null> => {
+}: UserLogin): Promise<LoginResponse | null> => {
   try {
     const response = await axiosInstance.post("/api/user/login", {
       email,
@@ -20,9 +24,9 @@ export const LoginUser = async ({
     if (axios.isAxiosError(error)) {
       const serverMessage = (error.response?.data as BackendError)?.message;
 
-      return serverMessage || error.message;
+      return { message: serverMessage || error.message };
     }
-    return "Неизвестная ошибка";
+    return { message: "Неизвестная ошибка" };
   }
 };
 export const useGetDataToken = (refreshToken: string | null) => {
@@ -57,7 +61,7 @@ export const Register = async ({
   email,
   password,
   age,
-}: RegisterUser): Promise<string | null> => {
+}: RegisterUser): Promise<LoginResponse | null> => {
   try {
     const response = await axiosInstance.post("/api/user/register", {
       email,
@@ -69,9 +73,9 @@ export const Register = async ({
     if (axios.isAxiosError(error)) {
       const serverMessage = (error.response?.data as BackendError)?.message;
 
-      return serverMessage || error.message;
+      return { message: serverMessage || error.message };
     }
-    return "Неизвестная ошибка";
+    return { message: "Неизвестная ошибка" };
   }
 };
 export const Logout = () => {

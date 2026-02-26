@@ -8,7 +8,6 @@ export const AccordionTable = ({
   children,
   content,
 }: AccordionProps<ModelTable>) => {
-  console.log(content);
   const { t } = useTranslation("History");
   return (
     <Accordion.Accordion type="single" collapsible className="w-full">

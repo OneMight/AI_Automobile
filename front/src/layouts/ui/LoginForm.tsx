@@ -45,15 +45,21 @@ export const LoginForm = () => {
     },
     onSubmit: async ({ value }) => {
       const errorMessage = await LoginUser(value);
-      if (errorMessage?.includes("email")) {
+      if (errorMessage?.message?.includes("email")) {
         setIsError(t("invalidEmail"));
-      } else if (errorMessage!.includes!("password")) {
+      } else if (errorMessage!.message?.includes!("password")) {
         setIsError(t("invalidPassword"));
-      } else if (typeof errorMessage === "string") {
+      } else if (typeof errorMessage?.refreshToken === "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
-        localStorage.setItem("refreshToken", errorMessage);
-        navigate({ to: ROUTES.DASHBOARD });
-        window.location.href = ROUTES.DASHBOARD;
+        localStorage.setItem("refreshToken", errorMessage.refreshToken);
+        const roleOfUser =
+          errorMessage.role === "owner"
+            ? ROUTES.OWNER
+            : errorMessage.role === "admin"
+              ? ROUTES.ADMIN
+              : ROUTES.DASHBOARD;
+        navigate({ to: roleOfUser });
+        window.location.href = roleOfUser;
       }
     },
   });
