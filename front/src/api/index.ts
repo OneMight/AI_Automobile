@@ -9,7 +9,7 @@ export const axiosInstance = axios.create({
 });
 
 export const AiInstance = axios.create({
-  baseURL: "http://localhost:8000", //https://maykess-neuroscan-aimodule.hf.space
+  baseURL: "https://maykess-neuroscan-aimodule.hf.space",
   headers: {
     "Content-Type": "multipart/form-data",
   },
