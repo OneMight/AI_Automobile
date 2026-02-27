@@ -2,11 +2,13 @@ import { AlertDialog } from "@/components";
 import type { RecognitionErrorProps } from "@/shared/types/interfaces";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SubmitionErrorForm } from "./SumbitionErrorForm";
 
 export const RecognitionErrorAlert = ({
   title,
   desctiption,
   setError,
+  setIsSuccessFeedback,
 }: RecognitionErrorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation("UploadPage");
@@ -30,7 +32,12 @@ export const RecognitionErrorAlert = ({
             {desctiption}
           </AlertDialog.AlertDialogDescription>
         </AlertDialog.AlertDialogHeader>
-        <AlertDialog.AlertDialogFooter>
+        <AlertDialog.AlertDialogFooter className="gap-4">
+          <SubmitionErrorForm
+            setIsOpenError={setIsOpen}
+            setError={setError}
+            setIsSuccessFeedback={setIsSuccessFeedback}
+          />
           <AlertDialog.AlertDialogAction
             onClick={handleClose}
             className="bg-main-app/50"

@@ -65,6 +65,13 @@ const Reviews = sequelize.define("Reviews", {
   description: { type: DataTypes.STRING, allowNull: true },
   answer: { type: DataTypes.STRING, allowNull: true },
 });
+const FeedBacks = sequelize.define("FeedBacks", {
+  id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
+  idUser: { type: DataTypes.BIGINT, allowNull: false },
+  mark: { type: DataTypes.STRING, allowNull: false },
+  model: { type: DataTypes.STRING, allowNull: false },
+  manufactureYear: { type: DataTypes.STRING, allowNull: false },
+});
 User.hasMany(Reviews, { foreignKey: "idUser" });
 Reviews.belongsTo(User, { foreignKey: "idUser" });
 
@@ -80,4 +87,6 @@ DeterminedModels.belongsTo(User, { foreignKey: "idUser" });
 Cars.hasMany(DeterminedModels, { foreignKey: "idCar" });
 DeterminedModels.belongsTo(Cars, { foreignKey: "idCar" });
 
-export { User, Tokens, Cars, DeterminedModels, Statistics, Reviews };
+User.hasMany(FeedBacks, { foreignKey: "idUser" });
+FeedBacks.belongsTo(User, { foreignKey: "idUser" });
+export { User, Tokens, Cars, DeterminedModels, Statistics, Reviews, FeedBacks };

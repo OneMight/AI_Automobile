@@ -24,6 +24,7 @@ import * as Carousel from "./ui/Carousel";
 import { ownerColumns } from "./ui/OwnerColumns";
 import { BurgerAdmin } from "./ui/BurgerAdmin";
 import { BurgerUser } from "./ui/BurgerUser";
+import { SuccessAlert } from "./ui/SuccessAlert";
 export {
   Button,
   Fields,
@@ -51,4 +52,5 @@ export {
   BurgerAdmin,
   ownerColumns,
   BurgerUser,
+  SuccessAlert,
 };

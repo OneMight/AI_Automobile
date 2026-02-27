@@ -33,6 +33,7 @@ export interface RecognitionErrorProps {
   title: string;
   desctiption: string | null;
   setError: (value: null) => void;
+  setIsSuccessFeedback: (value: boolean) => void;
 }
 export interface AccordionProps<TData> {
   children: ReactNode;

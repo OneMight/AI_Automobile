@@ -1,7 +1,7 @@
 import { postModel } from "@/api/modelsApi";
 import { updateStatistic } from "@/api/statisticApi";
 import { uploadImage } from "@/api/uploadApi";
-import { ModalRecognized } from "@/components";
+import { ModalRecognized, SuccessAlert } from "@/components";
 import { ImageUpload, RecognitionErrorAlert } from "@/layouts";
 import { useUser } from "@/lib/useUser";
 import type { RecognitionResponse } from "@/shared/types/types";
@@ -15,6 +15,7 @@ export const Upload = () => {
   const [result, setResult] = useState<RecognitionResponse | null>(null);
   const [imageURL, setImageURL] = useState("");
   const [error, setError] = useState<string | null>("");
+  const [isSuccesFeedback, setIsSuccessFeedback] = useState(false);
   const handleFileChange = async (file: File) => {
     if (!user?.id) return;
     const imageObject = URL.createObjectURL(file);
@@ -49,15 +50,21 @@ export const Upload = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-5 w-full p-10">
+    <div className="flex flex-col gap-5 w-full p-10 items-center">
       {error && (
         <RecognitionErrorAlert
           desctiption={error}
           setError={setError}
           title={t("errorTitle")}
+          setIsSuccessFeedback={setIsSuccessFeedback}
         />
       )}
-
+      {isSuccesFeedback && (
+        <SuccessAlert
+          title={t("success")}
+          setIsSuccessFeedback={setIsSuccessFeedback}
+        />
+      )}
       <div>
         <h1 className="text-2xl font-bold text-center">{t("imageAnalizer")}</h1>
         <p className="text-center text-secondary-text">{t("description")}</p>

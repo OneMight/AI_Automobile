@@ -13,6 +13,7 @@ import { OwnerTable } from "./ui/OwnerTable";
 import { AgesCharts } from "./ui/AgesCharts";
 import { AdminHeader } from "./ui/AdminHeader";
 import { RecognitionsCharts } from "./ui/RecognitionsCharts";
+import { SubmitionErrorForm } from "./ui/SumbitionErrorForm";
 export {
   Header,
   LoginForm,
@@ -29,4 +30,5 @@ export {
   AgesCharts,
   RecognitionsCharts,
   AdminHeader,
+  SubmitionErrorForm,
 };

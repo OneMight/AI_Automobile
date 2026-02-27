@@ -73,12 +73,7 @@ def get_prediction_data(image_bytes: bytes):
                         best_year_str = class_name
         
         if best_year_str == "Unknown":
-            top_year_idx = res_year.boxes.conf.argmax()
-            year_cls_name = res_year.names[int(res_year.boxes.cls[top_year_idx])]
-            try:
-                best_year_str = year_cls_name.split("_", 1)[1]
-            except:
-                best_year_str = year_cls_name
+           return None
 
 
     end_time = time.time()
