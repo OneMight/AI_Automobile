@@ -40,7 +40,7 @@ export const Reviews = ({ admin }: ReviewProps) => {
           {isFetchingNextPage ? (
             <Spinner />
           ) : hasNextPage ? null : (
-            <p className="text-tag-text">{t("noMore")}</p>
+            reviews.length > 6 && <p className="text-tag-text">{t("noMore")}</p>
           )}
         </div>
       </div>

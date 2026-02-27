@@ -41,6 +41,7 @@ export const useGetLatestReviews = (limit: number) => {
     queryKey: ["CarouselReview"],
     queryFn: getReviews,
     staleTime: 0,
+    retry: 0,
     gcTime: 0,
   });
   return {
