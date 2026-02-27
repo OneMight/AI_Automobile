@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "@tanstack/react-router";
-import { BurgerAdmin, BurgerUser, Button, CustomLink, DropDownMenu } from "..";
-import { HistoryIcon, MenuIcon, UploadIcon } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { BurgerAdmin, BurgerUser, Button, DropDownMenu } from "..";
+import { MenuIcon } from "lucide-react";
 import { ROUTES } from "@/shared/routes/routesPath";
-import { DashBoardIcon, ExitIcon } from "@/shared/images";
-import { cn } from "@/lib/utils";
+import { ExitIcon } from "@/shared/images";
 import { useTranslation } from "react-i18next";
 import { Logout } from "@/api/userApi";
 import { useQueryClient } from "@tanstack/react-query";

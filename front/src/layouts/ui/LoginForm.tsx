@@ -1,4 +1,4 @@
-import { Button, CustomAlert, Fields, Input } from "@/components";
+import { Button, CustomAlert, Fields, Input, Spinner } from "@/components";
 import { useTranslation } from "react-i18next";
 import { Lock, Mail, ArrowRight } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
@@ -13,6 +13,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("Login");
   const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState<string>("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const formSchema = z.object({
@@ -44,10 +45,13 @@ export const LoginForm = () => {
       onChange: formSchema,
     },
     onSubmit: async ({ value }) => {
+      setIsLoading(true);
       const errorMessage = await LoginUser(value);
       if (errorMessage?.message?.includes("email")) {
+        setIsLoading(false);
         setIsError(t("invalidEmail"));
       } else if (errorMessage!.message?.includes!("password")) {
+        setIsLoading(false);
         setIsError(t("invalidPassword"));
       } else if (typeof errorMessage?.refreshToken === "string") {
         await queryClient.invalidateQueries({ queryKey: ["userToken"] });
@@ -58,6 +62,7 @@ export const LoginForm = () => {
             : errorMessage.role === "admin"
               ? ROUTES.ADMIN
               : ROUTES.DASHBOARD;
+        setIsLoading(false);
         navigate({ to: roleOfUser });
         window.location.href = roleOfUser;
       }
@@ -189,8 +194,13 @@ export const LoginForm = () => {
       <form.Subscribe
         selector={(state) => [state.canSubmit, state.isSubmitting]}
         children={() => (
-          <Button type="submit" className="w-full text-black">
-            {t("submit")} <ArrowRight />
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className={cn("w-full text-black", isLoading && "bg-main/50")}
+          >
+            {isLoading ? <Spinner className="size-4" /> : t("submit")}{" "}
+            <ArrowRight />
           </Button>
         )}
       />
