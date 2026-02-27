@@ -70,3 +70,6 @@ export interface PropsLine {
 export interface ReviewProps {
   admin?: boolean;
 }
+export interface BurgerProps {
+  admin?: boolean;
+}

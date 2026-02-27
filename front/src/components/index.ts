@@ -22,6 +22,8 @@ import { Spinner } from "./ui/Spinner";
 import { Review } from "./ui/Review";
 import * as Carousel from "./ui/Carousel";
 import { ownerColumns } from "./ui/OwnerColumns";
+import { BurgerAdmin } from "./ui/BurgerAdmin";
+import { BurgerUser } from "./ui/BurgerUser";
 export {
   Button,
   Fields,
@@ -46,5 +48,7 @@ export {
   Spinner,
   Review,
   Carousel,
+  BurgerAdmin,
   ownerColumns,
+  BurgerUser,
 };

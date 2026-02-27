@@ -27,13 +27,13 @@ export const Upload = () => {
 
     const data = await uploadImage(formData);
     if ("mark" in data) {
-      setResult(data);
+      setResult({ ...data, confidence: Number(data.confidence.toFixed(2)) });
       const newData = new FormData();
       newData.append("image", file);
       newData.append("mark", data.mark);
       newData.append("model", data.model);
       newData.append("manufactureYear", String(data.manufactureYear));
-      newData.append("confidence", String(data.confidence));
+      newData.append("confidence", data.confidence.toFixed(2));
       newData.append("determinedTime", String(data.determinedTime));
       try {
         const idModel = await postModel(newData, user.id);
