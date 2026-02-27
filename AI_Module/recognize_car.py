@@ -14,7 +14,7 @@ def get_prediction_data(image_bytes: bytes):
     
     image = Image.open(io.BytesIO(image_bytes))
 
-    res_brand = model_brand.predict(image, conf=0.1)[0] 
+    res_brand = model_brand.predict(image, conf=0.85)[0] 
     
     if not res_brand.boxes or len(res_brand.boxes) == 0:
         return None

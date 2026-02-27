@@ -1,6 +1,7 @@
 import { Logout } from "@/api/userApi";
 import { Burger, Button, CustomLink } from "@/components";
-import { cn } from "@/lib/utils";
+import { useUser } from "@/lib/useUser";
+import { cn, isAdmin } from "@/lib/utils";
 import { DashBoardIcon, ExitIcon, Logo, UploadIcon } from "@/shared/images";
 import { ROUTES } from "@/shared/routes/routesPath";
 import { useQueryClient } from "@tanstack/react-query";
@@ -10,6 +11,8 @@ import { useTranslation } from "react-i18next";
 export const AdminHeader = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { user } = useUser();
+  const userIsAdmin = isAdmin(user?.role);
   const { t } = useTranslation("Header");
   const handleLogout = () => {
     Logout();
@@ -62,7 +65,7 @@ export const AdminHeader = () => {
         </Link>
       </nav>
       <div className="block header:hidden">
-        <Burger />
+        <Burger admin={userIsAdmin} />
       </div>
       <div className="hidden header:flex flex-row gap-5 items-center">
         <Button
