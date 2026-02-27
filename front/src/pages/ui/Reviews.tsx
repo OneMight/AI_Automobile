@@ -5,7 +5,8 @@ import { useInView } from "react-intersection-observer";
 import { ReviewModal } from "@/layouts";
 import { useGetReviews } from "@/api/reviewsApi";
 import { useEffect } from "react";
-export const Reviews = () => {
+import type { ReviewProps } from "@/shared/types/interfaces";
+export const Reviews = ({ admin }: ReviewProps) => {
   const { t } = useTranslation("Reviews");
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useGetReviews();
@@ -23,7 +24,7 @@ export const Reviews = () => {
           <h1 className="text-3xl">{t("title")}</h1>
           <p className="text-secondary-text">{t("description")}</p>
         </div>
-        <ReviewModal />
+        {!admin && <ReviewModal />}
       </div>
       <div className="flex flex-col gap-5 items-center justify-center w-full mb-10">
         {status === "pending" ? (
@@ -31,7 +32,7 @@ export const Reviews = () => {
         ) : (
           <div className="w-full grid desktop:grid-cols-3 tablet:grid-cols-2  gap-4">
             {reviews.map((review) => (
-              <Review key={review.id} review={review} />
+              <Review key={review.id} review={review} admin={admin} />
             ))}
           </div>
         )}

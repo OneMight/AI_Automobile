@@ -9,3 +9,6 @@ export function cn(...inputs: ClassValue[]) {
 export function isOwner(value: Role | undefined): value is "owner" {
   return value === "owner";
 }
+export function isAdmin(value: Role | undefined): value is "admin" {
+  return value === "admin";
+}

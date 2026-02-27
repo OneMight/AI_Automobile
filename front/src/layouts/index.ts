@@ -11,6 +11,7 @@ import { HomeCarousel } from "./ui/HomeCarousel";
 import { OwnerHeader } from "./ui/OwnerHeader";
 import { OwnerTable } from "./ui/OwnerTable";
 import { AgesCharts } from "./ui/AgesCharts";
+import { AdminHeader } from "./ui/AdminHeader";
 import { RecognitionsCharts } from "./ui/RecognitionsCharts";
 export {
   Header,
@@ -27,4 +28,5 @@ export {
   OwnerTable,
   AgesCharts,
   RecognitionsCharts,
+  AdminHeader,
 };

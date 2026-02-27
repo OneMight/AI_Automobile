@@ -8,4 +8,5 @@ export const ROUTES = {
   REVIEWS: "/reviews",
   OWNER: "/owner",
   ADMIN: "/admin",
+  SWAGGER: `${import.meta.env.VITE_API_URL}/api-docs`,
 } as const;
