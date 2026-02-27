@@ -63,6 +63,7 @@ const Reviews = sequelize.define("Reviews", {
   idUser: { type: DataTypes.BIGINT, allowNull: false },
   rating: { type: DataTypes.INTEGER, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: true },
+  answer: { type: DataTypes.STRING, allowNull: true },
 });
 User.hasMany(Reviews, { foreignKey: "idUser" });
 Reviews.belongsTo(User, { foreignKey: "idUser" });

@@ -48,6 +48,7 @@ export interface StarRatingProps {
 export interface ReviewsBlockProps {
   review: Reviews;
   className?: string;
+  admin?: boolean;
 }
 export interface AgeData {
   category: string;
@@ -65,4 +66,7 @@ export interface RecognitionData {
 
 export interface PropsLine {
   data: RecognitionData[];
+}
+export interface ReviewProps {
+  admin?: boolean;
 }

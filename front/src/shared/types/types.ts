@@ -79,5 +79,6 @@ export type Reviews = {
   description: string;
   email: string;
   role: Role;
+  answer: string;
   createdAt: Date;
 };

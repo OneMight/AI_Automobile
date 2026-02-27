@@ -49,3 +49,14 @@ export const useGetLatestReviews = (limit: number) => {
     isError,
   };
 };
+export const answerReview = async ({
+  id,
+  answer,
+}: {
+  id: number;
+  answer: string;
+}) => {
+  await axiosInstance.post(`api/reviews/answer/${id}`, {
+    answer: answer,
+  });
+};

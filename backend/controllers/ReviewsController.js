@@ -42,4 +42,17 @@ export class ReviewsController {
       return res.status(500).json({ message: error.message });
     }
   }
+  async answerReview(req, res) {
+    const id = req.params.id;
+    const { answer } = req.body;
+    try {
+      const review = await Reviews.findByPk(id);
+      await review.update({
+        answer: answer,
+      });
+      return res.status(200).json(review);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
 }

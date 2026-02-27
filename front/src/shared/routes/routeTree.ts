@@ -8,6 +8,7 @@ import {
   historyPage,
   reviewsPage,
   ownerPage,
+  adminPage,
 } from ".";
 
 export const routeTree = rootRouter.addChildren([
@@ -19,4 +20,5 @@ export const routeTree = rootRouter.addChildren([
   historyPage,
   reviewsPage,
   ownerPage,
+  adminPage,
 ]);
