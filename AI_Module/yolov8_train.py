@@ -11,12 +11,13 @@ def main():
     model.train(
         data='./dataset/data.yaml',
         epochs=100,     
-        imgsz=640,
-        batch=8,       
+        imgsz=480,
+        batch=16,       
         workers=4,     
         device=0,
         lr0=0.001,
         cache = 'disk',
+        half=True,
         
     
         

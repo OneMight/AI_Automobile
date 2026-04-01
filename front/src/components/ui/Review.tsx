@@ -18,7 +18,6 @@ export const Review = ({ review, className, admin }: ReviewsBlockProps) => {
   const handleSetAnswer = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setAnswer(e.target.value);
   };
-  console.log(answer);
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: answerReview,

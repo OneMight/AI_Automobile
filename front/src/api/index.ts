@@ -3,7 +3,7 @@ export const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}`,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: `Bearer ${localStorage.getItem("refreshToken")}`,
   },
   withCredentials: true,
 });
@@ -15,6 +15,6 @@ export const AiInstance = axios.create({
   },
 });
 axiosInstance.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem("refreshToken")}`;
   return config;
 });
