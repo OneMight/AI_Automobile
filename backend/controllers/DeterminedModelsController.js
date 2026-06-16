@@ -19,13 +19,6 @@ const storage = new CloudinaryStorage({
 });
 export const upload = multer({ storage: storage });
 
-// const storage = multer.diskStorage({
-//   destination: "./uploads/",
-//   filename: (_, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   },
-// });
-// export const upload = multer({ storage });
 export class DeterminedModelsController {
   async getDeterminedModelsByUserId(req, res) {
     try {
@@ -62,7 +55,6 @@ export class DeterminedModelsController {
           .status(400)
           .json({ message: "Файл не получен. Проверьте имя поля в FormData" });
       }
-      // const image = `/uploads/${req.file.filename}`;
       const image = req.file.path;
       const car = await Cars.findOne({
         where: {
@@ -93,7 +85,6 @@ export class DeterminedModelsController {
       });
       return res.status(200).json(determinedModel.id);
     } catch (error) {
-      // console.log(error.message);
       return res.status(500).json({ message: error.message });
     }
   }

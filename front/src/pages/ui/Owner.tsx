@@ -1,15 +1,11 @@
-import { AgesCharts, OwnerTable, RecognitionsCharts } from "@/layouts";
+import { OwnerTable, RecognitionsCharts } from "@/layouts";
 import { useTranslation } from "react-i18next";
 import { ownerColumns, Spinner } from "@/components";
 import { useGetAllModels } from "@/api/modelsApi";
-import {
-  useGetAgesStatistic,
-  useGetRecognitionStatistic,
-} from "@/api/statisticApi";
+import { useGetRecognitionStatistic } from "@/api/statisticApi";
 export const Owner = () => {
   const { data, isLoading } = useGetAllModels();
   const { t } = useTranslation("Owner");
-  const { ages, isAgesLoading } = useGetAgesStatistic();
   const { recogniontion, isRecognitionLoading } = useGetRecognitionStatistic();
   const ownerTable = data?.rows?.map((model) => ({
     id: model.id,
@@ -29,11 +25,6 @@ export const Owner = () => {
         <p className="tablet:text-xl text-lg">{t("description")}</p>
       </div>
       <div className="flex flex-col gap-10 tablet:flex-row tablet:justify-around items-center w-full">
-        {isAgesLoading ? (
-          <Spinner className="size-10" />
-        ) : (
-          typeof ages !== "undefined" && <AgesCharts data={ages} />
-        )}
         {isRecognitionLoading ? (
           <Spinner className="size-10" />
         ) : (

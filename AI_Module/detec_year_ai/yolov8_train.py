@@ -3,19 +3,17 @@ import torch
 
 torch.cuda.empty_cache() if torch.cuda.is_available() else None
 def main():
-    model = YOLO('yolov8m.pt')
+    model = YOLO('yolov8s.pt')
 
     model.train(
         data='./dataset/data.yaml',
-        epochs=100, 
+        epochs=20, 
         imgsz=640,
         batch=8,        
         workers=4,       
         device=0,
         lr0=0.001,
         cache = 'disk',
-        
-    
         
        hsv_h=0.015,
         hsv_s=0.9,      

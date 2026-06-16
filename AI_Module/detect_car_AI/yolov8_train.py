@@ -3,8 +3,8 @@ import torch
 
 torch.cuda.empty_cache() if torch.cuda.is_available() else None
 def main():
-    model = YOLO('./runs/detect/train2/weights/best.pt')
-    
+    # model = YOLO('./runs/detect/train2/weights/best.pt')
+    model = YOLO('yolov8m.pt')
     model.train(
         data='./dataset/data.yaml',
         epochs=50,

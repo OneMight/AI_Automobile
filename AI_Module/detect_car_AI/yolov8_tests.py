@@ -8,10 +8,10 @@ import math
 
 model = YOLO('./runs/detect/train2/weights/best.pt')
 
-test_folder = '../downloaded_images/Renault/Megane'
-number_of_class = 12
-car_model = 'Renault_Megane'
-name_of_car = f'{car_model}_Megane'
+test_folder = '../downloaded_images/nissan/leaf'
+number_of_class = 37 #number_of_class should be count of classes +1
+car_model = 'Nissan'
+name_of_car = f'{car_model}_Leaf'
 output_folder = f'../results_sorted/{name_of_car}_AutoDetect'
 os.makedirs(output_folder, exist_ok=True)
 
@@ -19,7 +19,7 @@ nullable_folder = os.path.join(output_folder, 'nullable')
 os.makedirs(nullable_folder, exist_ok=True)
 
 dataset_folders = {}
-for split in ['train', 'val', 'test']:
+for split in ['train', 'valid', 'test']:
     dataset_folders[split] = os.path.join(output_folder, split)
     os.makedirs(dataset_folders[split], exist_ok=True)
     os.makedirs(os.path.join(dataset_folders[split], 'images'), exist_ok=True)
@@ -35,13 +35,13 @@ n_train = math.ceil(total * 0.7)
 n_val = math.ceil(total * 0.2)
 n_test = total - n_train - n_val
 
-split_indices = {'train': n_train, 'val': n_val, 'test': n_train + n_val}
+split_indices = {'train': n_train, 'valid': n_val, 'test': n_train + n_val}
 
 for idx, img_path in enumerate(images):
     if idx < split_indices['train']:
         split = 'train'
-    elif idx < split_indices['val'] + split_indices['train']:
-        split = 'val'
+    elif idx < split_indices['valid'] + split_indices['train']:
+        split = 'valid'
     else:
         split = 'test'
 
